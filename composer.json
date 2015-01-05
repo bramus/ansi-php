@@ -1,0 +1,23 @@
+{
+    "name": "bramus/ansi-code",
+    "description": "ANSI Code and ANSI Escape Sequences (Colors, Erasing, etc.) for PHP CLI Apps",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bramus Van Damme",
+            "email": "bramus@bram.us",
+            "homepage": "https://www.bram.us/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bramus\\Ansi\\": "src/"
+        }
+    }
+}
