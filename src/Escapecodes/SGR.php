@@ -1,14 +1,12 @@
 <?php
 /**
- * Select Graphic Rendition Escape Code
+ * SGR - SELECT GRAPHIC RENDITION
  *
  * SGR is used to establish one or more graphic rendition aspects for
  * subsequent text. The established aspects remain in effect until the
  * next occurrence of SGR in the data stream, depending on the setting
  * of the GRAPHIC RENDITION COMBINATION MODE (GRCM). Each graphic
  * rendition aspect is specified by a parameter value
- *
- * @var string
  */
 namespace Bramus\Ansi\Escapecodes;
 

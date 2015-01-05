@@ -8,7 +8,7 @@ namespace Bramus\Ansi\Escapecodes;
 class Base
 {
     /**
-     * Select Graphic Rendition
+     * SGR - SELECT GRAPHIC RENDITION
      *
      * SGR is used to establish one or more graphic rendition aspects for
      * subsequent text. The established aspects remain in effect until the
