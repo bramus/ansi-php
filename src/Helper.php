@@ -178,7 +178,7 @@ class Helper
     {
         $sgr = new Escapecodes\SGR($parameterByte);
 
-        return $this->cs(ControlFunction::C1_ESC, $sgr);
+        return $this->cs(ControlFunction::C1_ESC, $sgr, $outputNow);
     }
 
     /**
