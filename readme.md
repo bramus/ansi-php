@@ -10,10 +10,23 @@ Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
 
 `bramus/ansi-php` is a set of classes to working with ANSI Control Functions and ANSI Control Sequences _(ANSI Escape Sequences)_ on text based terminals.
 
-ANSI Control Sequences allow on to clear the screen, move the cursor, set text colors, etc.
+- ANSI Control Functions control an action such as line spacing, paging, or data flow.
+- ANSI Control Sequences allow one to clear the screen, move the cursor, set text colors, etc.
 
-At this time `bramus/ansi-php` only support the SGR (Select Graphic Rendition) Control Sequence, which affords one to manipulate text styling (bold, underline, blink, colors, etc.).
+When it comes to ANSI Escape Sequences `bramus/ansi-php` only supports SGR (Select Graphic Rendition) at this time. SGR affords one to manipulate text styling (bold, underline, blink, colors, etc.). Other Control Sequences – such as erasing the screen, and moving the cursor – are not (yet) supported.
 
+## Quick example
+
+```
+use \Bramus\Ansi\Helper;
+use \Bramus\Ansi\Escapecodes\Sgr;
+
+// Create Helper Instance
+$h = new Helper();
+
+// Output some styled text on screen, along with a Line Feed and a Bell
+echo $h->color(array(Sgr::COLOR_FG_RED, Sgr::COLOR_BG_WHITE))->blink()->text('My text will be white on a red background and I will be blinking. A bell is coming up ...')->nostyle()->lf()->bell()->get();
+```
 
 ## Prerequisites/Requirements
 
@@ -196,8 +209,8 @@ Unit tests are also automatically run [on Travis CI](http://travis-ci.org/bramus
 
 ## References
 
-- [http://en.wikipedia.org/wiki/ANSI_escape_code]http://en.wikipedia.org/wiki/ANSI_escape_code
-- [http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf]http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf
-- [http://wiki.bash-hackers.org/scripting/terminalcodes]http://wiki.bash-hackers.org/scripting/terminalcodes
-- [http://www.isthe.com/chongo/tech/comp/ansi_escapes.html]http://www.isthe.com/chongo/tech/comp/ansi_escapes.html
-- [http://www.termsys.demon.co.uk/vtansi.htm]http://www.termsys.demon.co.uk/vtansi.htm
+- [http://en.wikipedia.org/wiki/ANSI_escape_code](http://en.wikipedia.org/wiki/ANSI_escape_code)
+- [http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf)
+- [http://wiki.bash-hackers.org/scripting/terminalcodes](http://wiki.bash-hackers.org/scripting/terminalcodes)
+- [http://www.isthe.com/chongo/tech/comp/ansi_escapes.html](http://www.isthe.com/chongo/tech/comp/ansi_escapes.html)
+- [http://www.termsys.demon.co.uk/vtansi.htm](http://www.termsys.demon.co.uk/vtansi.htm)
