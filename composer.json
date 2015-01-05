@@ -1,6 +1,6 @@
 {
     "name": "bramus/ansi-code",
-    "description": "ANSI Code and ANSI Escape Sequences (Colors, Erasing, etc.) for PHP CLI Apps",
+    "description": "ANSI Control Functions and ANSI Control Sequences (Colors, Erasing, etc.) for PHP CLI Apps",
     "license": "MIT",
     "authors": [
         {
