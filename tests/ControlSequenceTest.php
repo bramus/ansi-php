@@ -1,7 +1,8 @@
 <?php
 
 use \Bramus\Ansi\ControlFunction;
-use \Bramus\Ansi\Escapecodes\Sgr;
+use \Bramus\Ansi\Escapecodes\Base;
+use \Bramus\Ansi\Escapecodes\SGR;
 use \Bramus\Ansi\Helper;
 
 class ControlSequenceTest extends PHPUnit_Framework_TestCase
@@ -21,23 +22,23 @@ class ControlSequenceTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Bramus\Ansi\Helper', $this->helper);
     }
 
-    public function testSgr()
+    public function testSGR()
     {
-        $test = $this->helper->sgr(array(Sgr::COLOR_FG_RED, Sgr::STYLE_BLINK, Sgr::STYLE_BOLD))->text('te')->sgr(array(Sgr::COLOR_BG_GREEN))->text('st')->sgr()->get();
+        $test = $this->helper->sgr(array(SGR::COLOR_FG_RED, SGR::STYLE_BLINK, SGR::STYLE_BOLD))->text('te')->sgr(array(SGR::COLOR_BG_GREEN))->text('st')->sgr()->get();
 
         $this->assertEquals(
             $test,
-            ControlFunction::C1_ESC.'['.Sgr::COLOR_FG_RED.';'.Sgr::STYLE_BLINK.';'.Sgr::STYLE_BOLD.'m'.'te'.ControlFunction::C1_ESC.'['.Sgr::COLOR_BG_GREEN.'m'.'st'.ControlFunction::C1_ESC.'['.Sgr::STYLE_NONE.'m'
+            ControlFunction::C1_ESC.'['.SGR::COLOR_FG_RED.';'.SGR::STYLE_BLINK.';'.SGR::STYLE_BOLD.Base::FB_SGR.'te'.ControlFunction::C1_ESC.'['.SGR::COLOR_BG_GREEN.Base::FB_SGR.'st'.ControlFunction::C1_ESC.'['.SGR::STYLE_NONE.Base::FB_SGR
         );
     }
 
-    public function testSgrShorthands()
+    public function testSGRShorthands()
     {
-        $test = $this->helper->bold()->color(Sgr::COLOR_FG_RED)->underline()->blink()->get() . 'test' . $this->helper->reset()->get();
+        $test = $this->helper->bold()->color(SGR::COLOR_FG_RED)->underline()->blink()->get() . 'test' . $this->helper->reset()->get();
 
         $this->assertEquals(
             $test,
-            ControlFunction::C1_ESC.'['.Sgr::STYLE_BOLD.'m'.ControlFunction::C1_ESC.'['.Sgr::COLOR_FG_RED.'m'.ControlFunction::C1_ESC.'['.Sgr::STYLE_UNDERLINE.'m'.ControlFunction::C1_ESC.'['.Sgr::STYLE_BLINK.'m'.'test'.ControlFunction::C1_ESC.'['.Sgr::STYLE_NONE.'m'
+            ControlFunction::C1_ESC.'['.SGR::STYLE_BOLD.Base::FB_SGR.ControlFunction::C1_ESC.'['.SGR::COLOR_FG_RED.Base::FB_SGR.ControlFunction::C1_ESC.'['.SGR::STYLE_UNDERLINE.Base::FB_SGR.ControlFunction::C1_ESC.'['.SGR::STYLE_BLINK.Base::FB_SGR.'test'.ControlFunction::C1_ESC.'['.SGR::STYLE_NONE.Base::FB_SGR
         );
     }
 }

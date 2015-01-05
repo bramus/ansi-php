@@ -19,13 +19,13 @@ When it comes to ANSI Escape Sequences `bramus/ansi-php` only supports SGR (Sele
 
 ```
 use \Bramus\Ansi\Helper;
-use \Bramus\Ansi\Escapecodes\Sgr;
+use \Bramus\Ansi\Escapecodes\SGR;
 
 // Create Helper Instance
 $h = new Helper();
 
 // Output some styled text on screen, along with a Line Feed and a Bell
-echo $h->color(array(Sgr::COLOR_FG_RED, Sgr::COLOR_BG_WHITE))->blink()->text('My text will be white on a red background and I will be blinking. A bell is coming up ...')->nostyle()->lf()->bell()->get();
+echo $h->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('My text will be white on a red background and I will be blinking. A bell is coming up ...')->nostyle()->lf()->bell()->get();
 ```
 
 ## Prerequisites/Requirements
@@ -134,63 +134,63 @@ echo $h->text('I will be normal because nostyle() was called on the previous lin
 
 ### Styling Text: Colors
 
-Colors, and other text styling options, are defined as contants on `\Bramus\Ansi\Escapecodes\Sgr`.
+Colors, and other text styling options, are defined as contants on `\Bramus\Ansi\Escapecodes\SGR`.
 
 #### Foreground Colors
 
-- `Sgr::COLOR_FG_BLACK`: Black Foreground Color
-- `Sgr::COLOR_FG_RED`: Red Foreground Color
-- `Sgr::COLOR_FG_GREEN`: Green Foreground Color
-- `Sgr::COLOR_FG_YELLOW`: Yellow Foreground Color
-- `Sgr::COLOR_FG_BLUE`: Blue Foreground Color
-- `Sgr::COLOR_FG_PURPLE`: Purple Foreground Color
-- `Sgr::COLOR_FG_CYAN`: Cyan Foreground Color
-- `Sgr::COLOR_FG_WHITE`: White Foreground Color
-- `Sgr::COLOR_FG_BLACK_BRIGHT`: Black Foreground Color (Bright)
-- `Sgr::COLOR_FG_RED_BRIGHT`: Red Foreground Color (Bright)
-- `Sgr::COLOR_FG_GREEN_BRIGHT`: Green Foreground Color (Bright)
-- `Sgr::COLOR_FG_YELLOW_BRIGHT`: Yellow Foreground Color (Bright)
-- `Sgr::COLOR_FG_BLUE_BRIGHT`: Blue Foreground Color (Bright)
-- `Sgr::COLOR_FG_PURPLE_BRIGHT`: Purple Foreground Color (Bright)
-- `Sgr::COLOR_FG_CYAN_BRIGHT`: Cyan Foreground Color (Bright)
-- `Sgr::COLOR_FG_WHITE_BRIGHT`: White Foreground Color (Bright)
+- `SGR::COLOR_FG_BLACK`: Black Foreground Color
+- `SGR::COLOR_FG_RED`: Red Foreground Color
+- `SGR::COLOR_FG_GREEN`: Green Foreground Color
+- `SGR::COLOR_FG_YELLOW`: Yellow Foreground Color
+- `SGR::COLOR_FG_BLUE`: Blue Foreground Color
+- `SGR::COLOR_FG_PURPLE`: Purple Foreground Color
+- `SGR::COLOR_FG_CYAN`: Cyan Foreground Color
+- `SGR::COLOR_FG_WHITE`: White Foreground Color
+- `SGR::COLOR_FG_BLACK_BRIGHT`: Black Foreground Color (Bright)
+- `SGR::COLOR_FG_RED_BRIGHT`: Red Foreground Color (Bright)
+- `SGR::COLOR_FG_GREEN_BRIGHT`: Green Foreground Color (Bright)
+- `SGR::COLOR_FG_YELLOW_BRIGHT`: Yellow Foreground Color (Bright)
+- `SGR::COLOR_FG_BLUE_BRIGHT`: Blue Foreground Color (Bright)
+- `SGR::COLOR_FG_PURPLE_BRIGHT`: Purple Foreground Color (Bright)
+- `SGR::COLOR_FG_CYAN_BRIGHT`: Cyan Foreground Color (Bright)
+- `SGR::COLOR_FG_WHITE_BRIGHT`: White Foreground Color (Bright)
 
 #### Background Colors
 
-- `Sgr::COLOR_BG_BLACK`: Black Background Color
-- `Sgr::COLOR_BG_RED`: Red Background Color
-- `Sgr::COLOR_BG_GREEN`: Green Background Color
-- `Sgr::COLOR_BG_YELLOW`: Yellow Background Color
-- `Sgr::COLOR_BG_BLUE`: Blue Background Color
-- `Sgr::COLOR_BG_PURPLE`: Purple Background Color
-- `Sgr::COLOR_BG_CYAN`: Cyan Background Color
-- `Sgr::COLOR_BG_WHITE`: White Background Color
-- `Sgr::COLOR_BG_BLACK_BRIGHT`: Black Background Color (Bright)
-- `Sgr::COLOR_BG_RED_BRIGHT`: Red Background Color (Bright)
-- `Sgr::COLOR_BG_GREEN_BRIGHT`: Green Background Color (Bright)
-- `Sgr::COLOR_BG_YELLOW_BRIGHT`: Yellow Background Color (Bright)
-- `Sgr::COLOR_BG_BLUE_BRIGHT`: Blue Background Color (Bright)
-- `Sgr::COLOR_BG_PURPLE_BRIGHT`: Purple Background Color (Bright)
-- `Sgr::COLOR_BG_CYAN_BRIGHT`: Cyan Background Color (Bright)
-- `Sgr::COLOR_BG_WHITE_BRIGHT`: White Background Color (Bright)
+- `SGR::COLOR_BG_BLACK`: Black Background Color
+- `SGR::COLOR_BG_RED`: Red Background Color
+- `SGR::COLOR_BG_GREEN`: Green Background Color
+- `SGR::COLOR_BG_YELLOW`: Yellow Background Color
+- `SGR::COLOR_BG_BLUE`: Blue Background Color
+- `SGR::COLOR_BG_PURPLE`: Purple Background Color
+- `SGR::COLOR_BG_CYAN`: Cyan Background Color
+- `SGR::COLOR_BG_WHITE`: White Background Color
+- `SGR::COLOR_BG_BLACK_BRIGHT`: Black Background Color (Bright)
+- `SGR::COLOR_BG_RED_BRIGHT`: Red Background Color (Bright)
+- `SGR::COLOR_BG_GREEN_BRIGHT`: Green Background Color (Bright)
+- `SGR::COLOR_BG_YELLOW_BRIGHT`: Yellow Background Color (Bright)
+- `SGR::COLOR_BG_BLUE_BRIGHT`: Blue Background Color (Bright)
+- `SGR::COLOR_BG_PURPLE_BRIGHT`: Purple Background Color (Bright)
+- `SGR::COLOR_BG_CYAN_BRIGHT`: Cyan Background Color (Bright)
+- `SGR::COLOR_BG_WHITE_BRIGHT`: White Background Color (Bright)
 
 Pass one of these into `$h->color()` and the color will be set.
 
 ```
-use \Bramus\Ansi\Escapecodes\Sgr;
+use \Bramus\Ansi\Escapecodes\SGR;
 
 $h = new \Bramus\Ansi\Helper();
 
-echo $h->color(Sgr::COLOR_FG_RED)->text('I will be red')->nostyle()->get();
+echo $h->color(SGR::COLOR_FG_RED)->text('I will be red')->nostyle()->get();
 ```
 
 To set the foreground and background color in one call, pass them using an array to `$h->color()`
 ```
-use \Bramus\Ansi\Escapecodes\Sgr;
+use \Bramus\Ansi\Escapecodes\SGR;
 
 $h = new \Bramus\Ansi\Helper();
 
-echo $h->color(array(Sgr::COLOR_FG_RED, Sgr::COLOR_BG_WHITE))->blink()->text('I will be white on a red background and will be blinking')->nostyle()->get();
+echo $h->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('I will be white on a red background and will be blinking')->nostyle()->get();
 ```
 
 ## Unit Testing

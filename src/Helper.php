@@ -176,7 +176,7 @@ class Helper
      */
     public function sgr($parameterByte = array(), $outputNow = false)
     {
-        $sgr = new Escapecodes\Sgr($parameterByte);
+        $sgr = new Escapecodes\SGR($parameterByte);
 
         return $this->cs(ControlFunction::C1_ESC, $sgr);
     }
@@ -188,7 +188,7 @@ class Helper
      */
     public function nostyle($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_NONE), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_NONE), $outputNow);
     }
 
     /**
@@ -203,7 +203,7 @@ class Helper
 
     /**
      * Shorthand to set the color.
-     * @param  array   $color     The color you want to set. Use an array filled with Sgr::COLOR_* constants
+     * @param  array   $color     The color you want to set. Use an array filled with SGR::COLOR_* constants
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
      * @return Helper  self, for chaining
      */
@@ -219,7 +219,7 @@ class Helper
      */
     public function bold($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_BOLD), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_BOLD), $outputNow);
     }
 
     /**
@@ -229,7 +229,7 @@ class Helper
      */
     public function bright($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_INTENSITY_BRIGHT), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_INTENSITY_BRIGHT), $outputNow);
     }
 
     /**
@@ -239,7 +239,7 @@ class Helper
      */
     public function normal($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_INTENSITY_NORMAL), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_INTENSITY_NORMAL), $outputNow);
     }
 
     /**
@@ -249,7 +249,7 @@ class Helper
      */
     public function faint($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_INTENSITY_FAINT), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_INTENSITY_FAINT), $outputNow);
     }
 
     /**
@@ -259,7 +259,7 @@ class Helper
      */
     public function italic($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_ITALIC), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_ITALIC), $outputNow);
     }
 
     /**
@@ -269,7 +269,7 @@ class Helper
      */
     public function underline($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_UNDERLINE), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_UNDERLINE), $outputNow);
     }
 
     /**
@@ -279,7 +279,7 @@ class Helper
      */
     public function blink($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_BLINK), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_BLINK), $outputNow);
     }
 
     /**
@@ -289,7 +289,7 @@ class Helper
      */
     public function negative($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_NEGATIVE), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_NEGATIVE), $outputNow);
     }
 
     /**
@@ -299,6 +299,6 @@ class Helper
      */
     public function strikethrough($outputNow = false)
     {
-        return $this->sgr(array(Escapecodes\Sgr::STYLE_STRIKETHROUGH), $outputNow);
+        return $this->sgr(array(Escapecodes\SGR::STYLE_STRIKETHROUGH), $outputNow);
     }
 }

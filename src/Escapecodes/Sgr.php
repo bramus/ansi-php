@@ -12,7 +12,7 @@
  */
 namespace Bramus\Ansi\Escapecodes;
 
-class Sgr extends Base
+class SGR extends Base
 {
     /**
      * Default rendition, cancels the effect of any preceding occurrence of SGR in the data stream
@@ -181,7 +181,7 @@ class Sgr extends Base
         }
 
         // Call Parent Constructor
-        parent::__construct($params, array(), self::FB_SGR);
+        parent::__construct($params, array(), parent::FB_SGR);
     }
 
     /**
