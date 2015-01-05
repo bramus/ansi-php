@@ -94,8 +94,8 @@ class Base
 
     /**
      * Add a Parameter Byte
-     * @param string $parameterByte The byte to add
-     * @return Base                 self, for chaining
+     * @param  string $parameterByte The byte to add
+     * @return Base   self, for chaining
      */
     public function addParameterByte($parameterByte)
     {
@@ -106,8 +106,8 @@ class Base
 
     /**
      * Set the Parameter Byte
-     * @param array $parameterByte The byte to add
-     * @return Base                self, for chaining
+     * @param  array $parameterByte The byte to add
+     * @return Base  self, for chaining
      */
     public function setParameterByte($parameterByte)
     {
@@ -120,8 +120,8 @@ class Base
 
     /**
      * Add a Intermediate Byte
-     * @param string $intermediateByte The byte to add
-     * @return Base                    self, for chaining
+     * @param  string $intermediateByte The byte to add
+     * @return Base   self, for chaining
      */
     public function addIntermediateByte($intermediateByte)
     {
@@ -132,8 +132,8 @@ class Base
 
     /**
      * Set the Intermediate Byte
-     * @param array $parameterByte The byte to add
-     * @return Base                self, for chaining
+     * @param  array $parameterByte The byte to add
+     * @return Base  self, for chaining
      */
     public function setIntermediateByte($intermediateByte)
     {
@@ -146,8 +146,8 @@ class Base
 
     /**
      * Set the finalByte
-     * @param string $finalByte The bit combination that terminates an escape sequence or a control sequence.
-     * @return Base                    self, for chaining
+     * @param  string $finalByte The bit combination that terminates an escape sequence or a control sequence.
+     * @return Base   self, for chaining
      */
     public function setFinalByte($finalByte)
     {

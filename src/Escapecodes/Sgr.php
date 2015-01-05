@@ -186,8 +186,8 @@ class Sgr extends Base
 
     /**
      * Add a Intermediate Byte
-     * @param string $intermediateByte The byte to add
-     * @return Base                    self, for chaining
+     * @param  string $intermediateByte The byte to add
+     * @return Base   self, for chaining
      */
     public function addIntermediateByte($intermediateByte)
     {
@@ -196,8 +196,8 @@ class Sgr extends Base
 
     /**
      * Set the Intermediate Byte
-     * @param array $parameterByte The byte to add
-     * @return Base                self, for chaining
+     * @param  array $parameterByte The byte to add
+     * @return Base  self, for chaining
      */
     public function setIntermediateByte($intermediateByte)
     {
@@ -206,8 +206,8 @@ class Sgr extends Base
 
     /**
      * Add a Parameter Byte
-     * @param string $parameterByte The byte to add
-     * @return Base                 self, for chaining
+     * @param  string $parameterByte The byte to add
+     * @return Base   self, for chaining
      */
     public function addParameterByte($parameterByte)
     {
