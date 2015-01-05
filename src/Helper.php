@@ -71,7 +71,8 @@ class Helper
      */
     private function cf($controlCharacter, $outputNow = false)
     {
-        $c = (new ControlFunction($controlCharacter))->get();
+        $cf = new ControlFunction($controlCharacter);
+        $c = $cf->get();
         if (!$outputNow) {
             $this->sequence .= $c;
         } else {
@@ -89,7 +90,8 @@ class Helper
      */
     private function cs($controlCharacter, $escapeCode, $outputNow = false)
     {
-        $c = (new ControlSequence($controlCharacter, $escapeCode))->get();
+        $cs = new ControlSequence($controlCharacter, $escapeCode);
+        $c = $cs->get();
         if (!$outputNow) {
             $this->sequence .= $c;
         } else {
