@@ -22,7 +22,7 @@ class Helper
         $sequence = $this->sequence;
 
         if ($resetAfterWards === true) {
-            $this->reset();
+            $this->resetSequence();
         }
 
         return $sequence;
@@ -45,7 +45,7 @@ class Helper
      * @param  string $value The value to set it to
      * @return Helper self, for chaining
      */
-    public function set($value)
+    public function setSequence($value)
     {
         $this->sequence = (string) $value;
 
@@ -56,7 +56,7 @@ class Helper
      * Reset the currently built ANSI sequence
      * @return Helper self, for chaining
      */
-    public function reset()
+    public function resetSequence()
     {
         $this->sequence = '';
 
@@ -167,7 +167,7 @@ class Helper
     }
 
     /**
-     * Select Graphic Rendition
+     * Manually specify the Select Graphic Rendition parameters
      * @param  array   $parameterByte Parameter byte to the SGR Escape Code
      * @param  boolean $outputNow     Echo the character right now, or add it to the sequence building?
      * @return Helper  self, for chaining
@@ -177,5 +177,126 @@ class Helper
         $sgr = new Escapecodes\Sgr($parameterByte);
 
         return $this->cs(ControlFunction::C1_ESC, $sgr);
+    }
+
+    /**
+     * Shorthand to remove all text styling (colors, bold, etc)
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function nostyle($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_NONE), $outputNow);
+    }
+
+    /**
+     * Shorthand to remove all text styling (colors, bold, etc)
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function reset($outputNow = false)
+    {
+        return $this->nostyle($outputNow);
+    }
+
+    /**
+     * Shorthand to set the color.
+     * @param  array   $color     The color you want to set. Use an array filled with Sgr::COLOR_* constants
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function color($color = array(), $outputNow = false)
+    {
+        return $this->sgr($color, $outputNow);
+    }
+
+    /**
+     * Shorthand to set make text styling to bold (on some systems bright intensity)
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function bold($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_BOLD), $outputNow);
+    }
+
+    /**
+     * Shorthand to set the text intensity to bright (on some systems bold)
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function bright($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_INTENSITY_BRIGHT), $outputNow);
+    }
+
+    /**
+     * Shorthand to set the text styling to normal (no bold/bright)
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function normal($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_INTENSITY_NORMAL), $outputNow);
+    }
+
+    /**
+     * (Not widely supported) Shorthand to set the text intensity to faint
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function faint($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_INTENSITY_FAINT), $outputNow);
+    }
+
+    /**
+     * (Not widely supported) Shorthand to set the text styling to italic
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function italic($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_ITALIC), $outputNow);
+    }
+
+    /**
+     * Shorthand to set the text styling to underline
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function underline($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_UNDERLINE), $outputNow);
+    }
+
+    /**
+     * Shorthand to set the text styling to blink
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function blink($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_BLINK), $outputNow);
+    }
+
+    /**
+     * Shorthand to set the text styling to reserved (viz. swap background & foreground color)
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function negative($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_NEGATIVE), $outputNow);
+    }
+
+    /**
+     * (Not widely supported) Shorthand to set the text styling to strikethrough
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Helper  self, for chaining
+     */
+    public function strikethrough($outputNow = false)
+    {
+        return $this->sgr(array(Escapecodes\Sgr::STYLE_STRIKETHROUGH), $outputNow);
     }
 }

@@ -30,6 +30,16 @@ class ControlSequenceTest extends PHPUnit_Framework_TestCase
             ControlFunction::C1_ESC.'['.Sgr::COLOR_FG_RED.';'.Sgr::STYLE_BLINK.';'.Sgr::STYLE_BOLD.'m'.'te'.ControlFunction::C1_ESC.'['.Sgr::COLOR_BG_GREEN.'m'.'st'.ControlFunction::C1_ESC.'['.Sgr::STYLE_NONE.'m'
         );
     }
+
+    public function testSgrShorthands()
+    {
+        $test = $this->helper->bold()->color(Sgr::COLOR_FG_RED)->underline()->blink()->get() . 'test' . $this->helper->reset()->get();
+
+        $this->assertEquals(
+            $test,
+            ControlFunction::C1_ESC.'['.Sgr::STYLE_BOLD.'m'.ControlFunction::C1_ESC.'['.Sgr::COLOR_FG_RED.'m'.ControlFunction::C1_ESC.'['.Sgr::STYLE_UNDERLINE.'m'.ControlFunction::C1_ESC.'['.Sgr::STYLE_BLINK.'m'.'test'.ControlFunction::C1_ESC.'['.Sgr::STYLE_NONE.'m'
+        );
+    }
 }
 
 // EOF
