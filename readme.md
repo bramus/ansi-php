@@ -154,7 +154,7 @@ echo $ansi->text('I will be normal because nostyle() was called on the previous 
 
 Colors, and other text styling options, are defined as contants on `\Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR`.
 
-#### Foreground Colors
+#### Foreground (Text) Colors
 
 - `SGR::COLOR_FG_BLACK`: Black Foreground Color
 - `SGR::COLOR_FG_RED`: Red Foreground Color
@@ -172,6 +172,7 @@ Colors, and other text styling options, are defined as contants on `\Bramus\Ansi
 - `SGR::COLOR_FG_PURPLE_BRIGHT`: Purple Foreground Color (Bright)
 - `SGR::COLOR_FG_CYAN_BRIGHT`: Cyan Foreground Color (Bright)
 - `SGR::COLOR_FG_WHITE_BRIGHT`: White Foreground Color (Bright)
+- `SGR::COLOR_FG_RESET': Default Foreground Color
 
 #### Background Colors
 
@@ -191,6 +192,7 @@ Colors, and other text styling options, are defined as contants on `\Bramus\Ansi
 - `SGR::COLOR_BG_PURPLE_BRIGHT`: Purple Background Color (Bright)
 - `SGR::COLOR_BG_CYAN_BRIGHT`: Cyan Background Color (Bright)
 - `SGR::COLOR_BG_WHITE_BRIGHT`: White Background Color (Bright)
+- `SGR::COLOR_BG_RESET': Default Background Color
 
 Pass one of these into `$ansi->color()` and the color will be set.
 
