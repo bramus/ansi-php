@@ -13,7 +13,7 @@ Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
 - ANSI Control Functions control an action such as line spacing, paging, or data flow.
 - ANSI Control Sequences allow one to clear the screen, move the cursor, set text colors, etc.
 
-_(Sidenote: “ANSI Escape Sequences” is a special type of “ANSI Control Sequence” that starts with the ESC ANSI Control Function.)_
+_(Sidenote: An “ANSI Escape Sequence” is a special type of “ANSI Control Sequence” which starts with the ESC ANSI Control Function. The terms are not interchangeable.)_
 
 When it comes to ANSI Escape Sequences `bramus/ansi-php` supports SGR _(Select Graphic Rendition)_ and ED _(Erase Display)_
 
@@ -21,6 +21,10 @@ When it comes to ANSI Escape Sequences `bramus/ansi-php` supports SGR _(Select G
 - ED allows one to erase the display.
 
 Other Control Sequences – such as moving the cursor – are not (yet) supported.
+
+An example library that uses `bramus/ansi-php` is [`bramus/monolog-colored-line-formatter`](https://github.com/bramus/monolog-colored-line-formatter). It uses `bramus/ansi-php`'s SGR support to colorize the output:
+
+![Monolog Colored Line Formatter](https://raw.githubusercontent.com/bramus/monolog-colored-line-formatter/master/screenshots/colorscheme-default.gif)
 
 ## Prerequisites/Requirements
 
