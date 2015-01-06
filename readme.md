@@ -13,7 +13,7 @@ Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
 - ANSI Control Functions control an action such as line spacing, paging, or data flow.
 - ANSI Control Sequences allow one to clear the screen, move the cursor, set text colors, etc.
 
-_Sidenote: ANSI Escape Sequences are special types of ANSI Control Sequences which start with the ESC ANSI Control Function._
+_(Sidenote: “ANSI Escape Sequences” is a special type of “ANSI Control Sequence” that starts with the ESC ANSI Control Function.)_
 
 When it comes to ANSI Escape Sequences `bramus/ansi-php` supports SGR _(Select Graphic Rendition)_ and ED _(Erase Display)_
 
@@ -55,7 +55,7 @@ echo $ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text(
 
 See more examples further down on how to use these.
 
-### Core functions provided on `Ansi`:
+### Core functions:
 
 - `get()`: Get the currently built ANSI sequence
 - `e()`: Output the currently built ANSI Sequence on screen (using `echo`)
@@ -63,7 +63,7 @@ See more examples further down on how to use these.
 - `setSequence()`: Set the ANSI sequence to the given value
 - `resetSequence()`: Reset the currently built ANSI sequence
 
-### ANSI Control Function shorthands provided on `Ansi`:
+### ANSI Control Function shorthands:
 
 - `bell()`:  Add a Bell Control Character (`\a`) to the sequence
 - `backspace()`:  Add a Backspace Control Character (`\b`) to the sequence
@@ -72,7 +72,7 @@ See more examples further down on how to use these.
 - `cr()`:  Add a Carriage Return Control Character (`\r`) to the sequence
 - `esc()`:  Add a Escape Control Character to the sequence
 
-### SGR ANSI Escape Sequence shorthands provided on `Ansi`:
+### SGR ANSI Escape Sequence shorthands:
 
 - `nostyle()` or `reset()`: Remove all text styling. (colors, bold, etc)
 - `color()`: Set the foreground and/or backgroundcolor of the text. _(see further)_
@@ -85,9 +85,9 @@ See more examples further down on how to use these.
 - `negative()`: Inverse or Reverse. Swap foreground and background.
 - `strikethrough()`: Strikethrough: On. _(Not widely supported)_
 
-__IMPORTANT__ Select Graphic Rendition works in such a way that text styling  you have set will remain active until you call `nostyle()` or `reset()` to return to the default styling.
+__IMPORTANT:__ Select Graphic Rendition works in such a way that text styling  you have set will remain active until you call `nostyle()` or `reset()` to return to the default styling.
 
-### ED ANSI Escape Sequence shorthands provided on `Ansi`:
+### ED ANSI Escape Sequence shorthands:
 
 - `eraseDisplay()`: Erase the entire screen and moves the cursor to home.
 - `eraseDisplayUp()`: Erase the screen from the current line up to the top of the screen.
@@ -226,8 +226,8 @@ Unit tests are also automatically run [on Travis CI](http://travis-ci.org/bramus
 - [http://en.wikipedia.org/wiki/ANSI_escape_code](http://en.wikipedia.org/wiki/ANSI_escape_code)
 - [http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf)
 - [http://wiki.bash-hackers.org/scripting/terminalcodes](http://wiki.bash-hackers.org/scripting/terminalcodes)
-- [http://web.mit.edu/gnu/doc/html/screen_10.html]http://web.mit.edu/gnu/doc/html/screen_10.html
+- [http://web.mit.edu/gnu/doc/html/screen_10.html](http://web.mit.edu/gnu/doc/html/screen_10.html)
 - [http://www.isthe.com/chongo/tech/comp/ansi_escapes.html](http://www.isthe.com/chongo/tech/comp/ansi_escapes.html)
 - [http://www.termsys.demon.co.uk/vtansi.htm](http://www.termsys.demon.co.uk/vtansi.htm)
-- [http://rrbrandt.dee.ufcg.edu.br/en/docs/ansi/]http://rrbrandt.dee.ufcg.edu.br/en/docs/ansi/
-- [http://tldp.org/HOWTO/Bash-Prompt-HOWTO/c327.html]http://tldp.org/HOWTO/Bash-Prompt-HOWTO/c327.html
+- [http://rrbrandt.dee.ufcg.edu.br/en/docs/ansi/](http://rrbrandt.dee.ufcg.edu.br/en/docs/ansi/)
+- [http://tldp.org/HOWTO/Bash-Prompt-HOWTO/c327.html](http://tldp.org/HOWTO/Bash-Prompt-HOWTO/c327.html)
