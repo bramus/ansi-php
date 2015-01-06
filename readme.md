@@ -24,7 +24,7 @@ Other Control Sequences – such as moving the cursor – are not (yet) supporte
 
 ## Prerequisites/Requirements
 
-- PHP 5.3.3 or greater
+- PHP 5.4.0 or greater
 
 ## Installation
 
