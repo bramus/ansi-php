@@ -7,46 +7,10 @@
  * representation consisting of one or more bit combinations.
  *
  */
-namespace Bramus\Ansi;
+namespace Bramus\Ansi\ControlFunctions;
 
-class ControlFunction
+class Base
 {
-    /**
-     * Bell Control Charachter (\a)
-     * @var string
-     */
-    const C1_BELL = "\007";
-
-    /**
-     * Backspace Control Charachter (\b)
-     * @var string
-     */
-    const C1_BACKSPACE = "\010";
-
-    /**
-     * Tab Control Character (\t)
-     * @var string
-     */
-    const C1_TAB = "\011";
-
-    /**
-     * Linefeed Control Character (\n)
-     * @var string
-     */
-    const C1_LF = "\012";
-
-    /**
-     * Carriage Return Control Character (\r)
-     * @var string
-     */
-    const C1_CR = "\015";
-
-    /**
-     * Escape Control Character
-     * @var string
-     */
-    const C1_ESC = "\033";
-
     /**
      * The Control Character used
      * @var string

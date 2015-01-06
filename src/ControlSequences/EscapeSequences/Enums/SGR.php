@@ -1,16 +1,10 @@
 <?php
 /**
- * SGR - SELECT GRAPHIC RENDITION
- *
- * SGR is used to establish one or more graphic rendition aspects for
- * subsequent text. The established aspects remain in effect until the
- * next occurrence of SGR in the data stream, depending on the setting
- * of the GRAPHIC RENDITION COMBINATION MODE (GRCM). Each graphic
- * rendition aspect is specified by a parameter value
+ * Possible Parameter Byte Values for SGR
  */
-namespace Bramus\Ansi\Escapecodes;
+namespace Bramus\Ansi\ControlSequences\EscapeSequences\Enums;
 
-class SGR extends Base
+class SGR
 {
     /**
      * Default rendition, cancels the effect of any preceding occurrence of SGR in the data stream
@@ -166,65 +160,4 @@ class SGR extends Base
     const COLOR_BG_CYAN_BRIGHT = '106';
     const COLOR_BG_WHITE_BRIGHT = '107';
     const COLOR_BG_RESET_BRIGHT = '109';
-
-    /**
-     * Select Graphic Rendition
-     * @param array $params Parameter byte to the SGR Escape Code
-     */
-    public function __construct($params = null)
-    {
-        // Make sure we have params set
-        if (!$params) {
-            $params = array(self::STYLE_NONE);
-        }
-
-        // Call Parent Constructor
-        parent::__construct($params, array(), parent::FB_SGR);
-    }
-
-    /**
-     * Add a Intermediate Byte
-     * @param  string $intermediateByte The byte to add
-     * @return Base   self, for chaining
-     */
-    public function addIntermediateByte($intermediateByte)
-    {
-        throw new \Exception('SGR Escape Codes have no intermediate bytes');
-    }
-
-    /**
-     * Set the Intermediate Byte
-     * @param  array $parameterByte The byte to add
-     * @return Base  self, for chaining
-     */
-    public function setIntermediateByte($intermediateByte)
-    {
-        throw new \Exception('SGR Escape Codes have no intermediate bytes');
-    }
-
-    /**
-     * Add a Parameter Byte
-     * @param  string $parameterByte The byte to add
-     * @return Base   self, for chaining
-     */
-    public function addParameterByte($parameterByte)
-    {
-        // @TODO: Check Validity
-        return parent::addParameterByte($parameterByte);
-    }
-
-    /**
-     * Build and return the ANSI Code
-     * @return string The ANSI Code
-     */
-    public function get()
-    {
-        // Sort parameterbytes
-        // sort($this->parameterByte);
-
-        // Call Parent
-        return parent::get();
-    }
 }
-
-// EOF
