@@ -31,7 +31,7 @@ class Ansi
     /**
      * Output the currently built ANSI Sequence on screen
      * @param  boolean $resetAfterWards Reset the currently built sequence after returning it?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function e($resetAfterWards = true)
     {
@@ -43,7 +43,7 @@ class Ansi
     /**
      * Set the ANSI sequence to the given value
      * @param  string $value The value to set it to
-     * @return Ansi self, for chaining
+     * @return Ansi   self, for chaining
      */
     public function setSequence($value)
     {
@@ -67,7 +67,7 @@ class Ansi
      *
      * @param  Object  $c         ...
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     private function appendToSequenceOrOutputNow($c, $outputNow = false)
     {
@@ -84,7 +84,7 @@ class Ansi
      * Add a piece of text to the sequence / echo it on screen
      * @param  string  $text      The text to add
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function text($text, $outputNow = false)
     {
@@ -100,7 +100,7 @@ class Ansi
     /**
      * Add a Bell Control Character to the sequence / echo it on screen
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function bell($outputNow = false)
     {
@@ -110,7 +110,7 @@ class Ansi
     /**
      * Add a Backspace Control Character to the sequence / echo it on screen
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function backspace($outputNow = false)
     {
@@ -120,7 +120,7 @@ class Ansi
     /**
      * Add a Tab Control Character to the sequence / echo it on screen
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function tab($outputNow = false)
     {
@@ -130,7 +130,7 @@ class Ansi
     /**
      * Add a Line Feed Control Character to the sequence / echo it on screen
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function lf($outputNow = false)
     {
@@ -140,7 +140,7 @@ class Ansi
     /**
      * Add a Carriage Return Control Character to the sequence / echo it on screen
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function cr($outputNow = false)
     {
@@ -151,7 +151,7 @@ class Ansi
      * Manually use SGR (Select Graphic Rendition)
      * @param  array   $parameterByte Parameter byte to the SGR Escape Code
      * @param  boolean $outputNow     Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function sgr($data = array(), $outputNow = false)
     {
@@ -164,7 +164,7 @@ class Ansi
      * Manually use ED (Select Graphic Rendition)
      * @param  array   $parameterByte Parameter byte to the SGR Escape Code
      * @param  boolean $outputNow     Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function ed($data, $outputNow = false)
     {
@@ -176,7 +176,7 @@ class Ansi
     /**
      * Shorthand to remove all text styling (colors, bold, etc)
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function nostyle($outputNow = false)
     {
@@ -186,7 +186,7 @@ class Ansi
     /**
      * Shorthand to remove all text styling (colors, bold, etc)
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function reset($outputNow = false)
     {
@@ -197,7 +197,7 @@ class Ansi
      * Shorthand to set the color.
      * @param  array   $color     The color you want to set. Use an array filled with ControlSequences\EscapeSequences\Enums\SGR::COLOR_* constants
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function color($color = array(), $outputNow = false)
     {
@@ -207,7 +207,7 @@ class Ansi
     /**
      * Shorthand to set make text styling to bold (on some systems bright intensity)
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function bold($outputNow = false)
     {
@@ -217,7 +217,7 @@ class Ansi
     /**
      * Shorthand to set the text intensity to bright (on some systems bold)
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function bright($outputNow = false)
     {
@@ -227,7 +227,7 @@ class Ansi
     /**
      * Shorthand to set the text styling to normal (no bold/bright)
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function normal($outputNow = false)
     {
@@ -237,7 +237,7 @@ class Ansi
     /**
      * (Not widely supported) Shorthand to set the text intensity to faint
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function faint($outputNow = false)
     {
@@ -247,7 +247,7 @@ class Ansi
     /**
      * (Not widely supported) Shorthand to set the text styling to italic
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function italic($outputNow = false)
     {
@@ -257,7 +257,7 @@ class Ansi
     /**
      * Shorthand to set the text styling to underline
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function underline($outputNow = false)
     {
@@ -267,7 +267,7 @@ class Ansi
     /**
      * Shorthand to set the text styling to blink
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function blink($outputNow = false)
     {
@@ -277,7 +277,7 @@ class Ansi
     /**
      * Shorthand to set the text styling to reserved (viz. swap background & foreground color)
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function negative($outputNow = false)
     {
@@ -287,7 +287,7 @@ class Ansi
     /**
      * (Not widely supported) Shorthand to set the text styling to strikethrough
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function strikethrough($outputNow = false)
     {
@@ -297,7 +297,7 @@ class Ansi
     /**
      * Erase the screen from the current line up to the top of the screen
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function eraseDisplayUp($outputNow = false)
     {
@@ -307,7 +307,7 @@ class Ansi
     /**
      * Erase the screen from the current line down to the bottom of the screen
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function eraseDisplayDown($outputNow = false)
     {
@@ -317,7 +317,7 @@ class Ansi
     /**
      * Erase the entire screen and moves the cursor to home
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
-     * @return Ansi  self, for chaining
+     * @return Ansi    self, for chaining
      */
     public function eraseDisplay($outputNow = false)
     {

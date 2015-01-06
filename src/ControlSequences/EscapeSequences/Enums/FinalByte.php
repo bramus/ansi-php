@@ -14,7 +14,7 @@ class FinalByte
      * presentation component) to be put into the erased state, depending
      * on the parameter values
      *
-     * @var string
+     * @type string
      */
     const ED = 'J';
 
@@ -27,7 +27,7 @@ class FinalByte
      * of the GRAPHIC RENDITION COMBINATION MODE (GRCM). Each graphic
      * rendition aspect is specified by a parameter value
      *
-     * @var string
+     * @type string
      */
     const SGR = 'm';
 

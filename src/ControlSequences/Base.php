@@ -36,7 +36,7 @@ class Base
     /**
      * Set the control sequence introducer
      * @param  \Bramus\Ansi\ControlFunction $controlSequenceIntroducer A ControlFunction that acts as the Control Sequence Introducer (CSI)
-     * @return ControlSequence self, for chaining
+     * @return ControlSequence              self, for chaining
      */
     public function setControlSequenceIntroducer($controlSequenceIntroducer)
     {
