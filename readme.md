@@ -8,25 +8,19 @@ Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
 
 ## About
 
-`bramus/ansi-php` is a set of classes to working with ANSI Control Functions and ANSI Control Sequences _(ANSI Escape Sequences)_ on text based terminals.
+`bramus/ansi-php` is a set of classes to working with ANSI Control Functions and ANSI Control Sequences on text based terminals.
 
 - ANSI Control Functions control an action such as line spacing, paging, or data flow.
 - ANSI Control Sequences allow one to clear the screen, move the cursor, set text colors, etc.
 
-When it comes to ANSI Escape Sequences `bramus/ansi-php` only supports SGR (Select Graphic Rendition) at this time. SGR affords one to manipulate text styling (bold, underline, blink, colors, etc.). Other Control Sequences – such as erasing the screen, and moving the cursor – are not (yet) supported.
+_Sidenote: ANSI Escape Sequences are special types of ANSI Control Sequences which start with the ESC ANSI Control Function._
 
-## Quick example
+When it comes to ANSI Escape Sequences `bramus/ansi-php` supports SGR _(Select Graphic Rendition)_ and ED _(Erase Display)_
 
-```
-use \Bramus\Ansi\Helper;
-use \Bramus\Ansi\Escapecodes\SGR;
+- SGR affords one to manipulate text styling (bold, underline, blink, colors, etc.).
+- ED allows one to erase the display.
 
-// Create Helper Instance
-$h = new Helper();
-
-// Output some styled text on screen, along with a Line Feed and a Bell
-echo $h->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('My text will be white on a red background and I will be blinking. A bell is coming up ...')->nostyle()->lf()->bell()->get();
-```
+Other Control Sequences – such as moving the cursor – are not (yet) supported.
 
 ## Prerequisites/Requirements
 
@@ -37,18 +31,31 @@ echo $h->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('My
 Installation is possible using Composer
 
 ```
-composer require bramus/ansi-php ~1.0
+composer require bramus/ansi-php ~2.0
 ```
 
 ## Usage
 
-The easiest way to use _ANSI PHP_ is to use the bundled `Helper` class as it provides easy shorthands. If you're feeling adventurous, you're of course free to use the raw `ControlFunction` and `ControlSequence` classes.
+The easiest way to use _ANSI PHP_ is to use the bundled `Ansi` class which provides easy shorthands to working with `bramus/ansi-php`. If you're feeling adventurous, you're of course free to use the raw `ControlFunction` and `ControlSequence` classes.
 
-The `Helper` class is written in such a way that you can chain calls to one another. To achieve this `Helper` stores all text built in a local variable `$sequence` until you retrieve it using the `get()` function. Alternatively use `e()` to echo the built contents.
+The `Ansi` class is written in such a way that you can chain calls to one another. To achieve this `Ansi` stores all text built in a local variable `$sequence`. It is stored there until you retrieve it using the `get()` function. Alternatively use `e()` to echo the built contents.
 
-See the examples further down on how to use these.
+### Quick example
 
-Core functions provided on `Helper`:
+```
+use \Bramus\Ansi\Ansi;
+use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
+
+// Create Ansi Instance
+$ansi = new Ansi();
+
+// Output some styled text on screen, along with a Line Feed and a Bell
+echo $ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('My text will be white on a red background and I will be blinking. A bell is coming up ...')->nostyle()->lf()->bell()->get();
+```
+
+See more examples further down on how to use these.
+
+### Core functions provided on `Ansi`:
 
 - `get()`: Get the currently built ANSI sequence
 - `e()`: Output the currently built ANSI Sequence on screen (using `echo`)
@@ -56,7 +63,7 @@ Core functions provided on `Helper`:
 - `setSequence()`: Set the ANSI sequence to the given value
 - `resetSequence()`: Reset the currently built ANSI sequence
 
-_ANSI Control Functions_ shorthands provided on `Helper`:
+### ANSI Control Function shorthands provided on `Ansi`:
 
 - `bell()`:  Add a Bell Control Character (`\a`) to the sequence
 - `backspace()`:  Add a Backspace Control Character (`\b`) to the sequence
@@ -65,7 +72,7 @@ _ANSI Control Functions_ shorthands provided on `Helper`:
 - `cr()`:  Add a Carriage Return Control Character (`\r`) to the sequence
 - `esc()`:  Add a Escape Control Character to the sequence
 
-_ANSI Control Sequence_ shorthands provided on `Helper`:
+### SGR ANSI Escape Sequence shorthands provided on `Ansi`:
 
 - `nostyle()` or `reset()`: Remove all text styling. (colors, bold, etc)
 - `color()`: Set the foreground and/or backgroundcolor of the text. _(see further)_
@@ -80,34 +87,41 @@ _ANSI Control Sequence_ shorthands provided on `Helper`:
 
 __IMPORTANT__ Select Graphic Rendition works in such a way that text styling  you have set will remain active until you call `nostyle()` or `reset()` to return to the default styling.
 
+### ED ANSI Escape Sequence shorthands provided on `Ansi`:
+
+- `eraseDisplay()`: Erase the entire screen and moves the cursor to home.
+- `eraseDisplayUp()`: Erase the screen from the current line up to the top of the screen.
+- `eraseDisplayDown()`: Erase the screen from the current line down to the bottom of the screen.
+
+
 ## Examples
 
 ### The Basics
 
 ```
-// Create Helper Instance
-$h = new \Bramus\Ansi\Helper();
+// Create Ansi Instance
+$ansi = new \Bramus\Ansi\Ansi();
 
 // This will output a Bell
-$h->bell()->e();
+$ansi->bell()->e();
 
 // This too will output a Bell
-echo $h->bell()->get();
+echo $ansi->bell()->get();
 
 // This will output some text
-$h->text('Hello World!')->e();
+$ansi->text('Hello World!')->e();
 ```
 
 ### Chaining
 
-`bramus/ansi-php`'s `Helper` class supports chaining.
+`bramus/ansi-php`'s wrapper `Ansi` class supports chaining.
 
 ```
-// Create Helper Instance
-$h = new \Bramus\Ansi\Helper();
+// Create Ansi Instance
+$ansi = new \Bramus\Ansi\Ansi();
 
 // This will output a Line Feed, some text, a Bell, and a Line Feed
-echo $h->lf()->text('hello')->bell()->lf()->get();
+echo $ansi->lf()->text('hello')->bell()->lf()->get();
 
 ```
 Don't forget to call `e()` or `get()` at the end.
@@ -115,26 +129,26 @@ Don't forget to call `e()` or `get()` at the end.
 ### Styling Text: The Basics
 
 ```
-$h = new \Bramus\Ansi\Helper();
-echo $h->bold()->underline()->text('I will be bold and underlined')->lf()->get();
+$ansi = new \Bramus\Ansi\Ansi();
+echo $ansi->bold()->underline()->text('I will be bold and underlined')->lf()->get();
 ```
 
 __IMPORTANT__ Select Graphic Rendition works in such a way that text styling  you have set will remain active until you call `nostyle()` or `reset()` to return to the default styling.
 
 
 ```
-$h = new \Bramus\Ansi\Helper();
+$ansi = new \Bramus\Ansi\Ansi();
 
-echo $h->bold()->underline()->text('I will be bold and underlined')->lf()->get();
-echo $h->text('I will also be bold because nostyle() has not been called yet')->lf()->get();
-echo $h->nostyle()->blink()->text('I will be blinking')->nostyle()->lf()->get();
-echo $h->text('I will be normal because nostyle() was called on the previous line')->get();
+echo $ansi->bold()->underline()->text('I will be bold and underlined')->lf()->get();
+echo $ansi->text('I will also be bold because nostyle() has not been called yet')->lf()->get();
+echo $ansi->nostyle()->blink()->text('I will be blinking')->nostyle()->lf()->get();
+echo $ansi->text('I will be normal because nostyle() was called on the previous line')->get();
 
 ```
 
 ### Styling Text: Colors
 
-Colors, and other text styling options, are defined as contants on `\Bramus\Ansi\Escapecodes\SGR`.
+Colors, and other text styling options, are defined as contants on `\Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR`.
 
 #### Foreground Colors
 
@@ -174,23 +188,23 @@ Colors, and other text styling options, are defined as contants on `\Bramus\Ansi
 - `SGR::COLOR_BG_CYAN_BRIGHT`: Cyan Background Color (Bright)
 - `SGR::COLOR_BG_WHITE_BRIGHT`: White Background Color (Bright)
 
-Pass one of these into `$h->color()` and the color will be set.
+Pass one of these into `$ansi->color()` and the color will be set.
 
 ```
-use \Bramus\Ansi\Escapecodes\SGR;
+use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
-$h = new \Bramus\Ansi\Helper();
+$ansi = new \Bramus\Ansi\Ansi();
 
-echo $h->color(SGR::COLOR_FG_RED)->text('I will be red')->nostyle()->get();
+echo $ansi->color(SGR::COLOR_FG_RED)->text('I will be red')->nostyle()->get();
 ```
 
-To set the foreground and background color in one call, pass them using an array to `$h->color()`
+To set the foreground and background color in one call, pass them using an array to `$ansi->color()`
 ```
-use \Bramus\Ansi\Escapecodes\SGR;
+use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
-$h = new \Bramus\Ansi\Helper();
+$ansi = new \Bramus\Ansi\Ansi();
 
-echo $h->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('I will be white on a red background and will be blinking')->nostyle()->get();
+echo $ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('I will be white on a red background and will be blinking')->nostyle()->get();
 ```
 
 ## Unit Testing
@@ -207,10 +221,13 @@ Unit tests are also automatically run [on Travis CI](http://travis-ci.org/bramus
 
 `bramus/ansi-php` is released under the MIT public license. See the enclosed `LICENSE` for details.
 
-## References
+## ANSI References
 
 - [http://en.wikipedia.org/wiki/ANSI_escape_code](http://en.wikipedia.org/wiki/ANSI_escape_code)
 - [http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-048.pdf)
 - [http://wiki.bash-hackers.org/scripting/terminalcodes](http://wiki.bash-hackers.org/scripting/terminalcodes)
+- [http://web.mit.edu/gnu/doc/html/screen_10.html]http://web.mit.edu/gnu/doc/html/screen_10.html
 - [http://www.isthe.com/chongo/tech/comp/ansi_escapes.html](http://www.isthe.com/chongo/tech/comp/ansi_escapes.html)
 - [http://www.termsys.demon.co.uk/vtansi.htm](http://www.termsys.demon.co.uk/vtansi.htm)
+- [http://rrbrandt.dee.ufcg.edu.br/en/docs/ansi/]http://rrbrandt.dee.ufcg.edu.br/en/docs/ansi/
+- [http://tldp.org/HOWTO/Bash-Prompt-HOWTO/c327.html]http://tldp.org/HOWTO/Bash-Prompt-HOWTO/c327.html
