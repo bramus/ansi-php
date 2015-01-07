@@ -174,6 +174,19 @@ class Ansi
     }
 
     /**
+     * Manually use EL (ERASE IN LINE)
+     * @param  array   $parameterByte Parameter byte to the EL Escape Code
+     * @param  boolean $outputNow     Echo the character right now, or add it to the sequence building?
+     * @return Ansi    self, for chaining
+     */
+    public function el($data, $outputNow = false)
+    {
+        return $this->appendToSequenceOrOutputNow(
+            new \Bramus\Ansi\ControlSequences\EscapeSequences\EL($data)
+        );
+    }
+
+    /**
      * Shorthand to remove all text styling (colors, bold, etc)
      * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
      * @return Ansi    self, for chaining
@@ -322,5 +335,35 @@ class Ansi
     public function eraseDisplay($outputNow = false)
     {
         return $this->ed(ControlSequences\EscapeSequences\Enums\ED::ALL, $outputNow);
+    }
+
+    /**
+     * Erase from the current cursor position to the end of the current line.
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Ansi    self, for chaining
+     */
+    public function eraseLineToEOL($outputNow = false)
+    {
+        return $this->el(ControlSequences\EscapeSequences\Enums\EL::TO_EOL, $outputNow);
+    }
+
+    /**
+     * Erases from the current cursor position to the start of the current line.
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Ansi    self, for chaining
+     */
+    public function eraseLineToSOL($outputNow = false)
+    {
+        return $this->el(ControlSequences\EscapeSequences\Enums\EL::TO_SOL, $outputNow);
+    }
+
+    /**
+     * Erase the entire current line.
+     * @param  boolean $outputNow Echo the character right now, or add it to the sequence building?
+     * @return Ansi    self, for chaining
+     */
+    public function eraseLine($outputNow = false)
+    {
+        return $this->el(ControlSequences\EscapeSequences\Enums\EL::ALL, $outputNow);
     }
 }

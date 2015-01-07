@@ -19,6 +19,17 @@ class FinalByte
     const ED = 'J';
 
     /**
+     * EL - ERASE IN LINE
+     *
+     * EL causes some or all character positions of the active line (the
+     * line which contains the active data position in the data component)
+     * to be put into the erased state, depending on the parameter values
+     *
+     * @type string
+     */
+    const EL = 'K';
+
+    /**
      * SGR - SELECT GRAPHIC RENDITION
      *
      * SGR is used to establish one or more graphic rendition aspects for

@@ -15,10 +15,11 @@ Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
 
 _(Sidenote: An “ANSI Escape Sequence” is a special type of “ANSI Control Sequence” which starts with the ESC ANSI Control Function. The terms are not interchangeable.)_
 
-When it comes to ANSI Escape Sequences `bramus/ansi-php` supports SGR _(Select Graphic Rendition)_ and ED _(Erase Display)_
+When it comes to ANSI Escape Sequences `bramus/ansi-php` supports:
 
-- SGR affords one to manipulate text styling (bold, underline, blink, colors, etc.).
-- ED allows one to erase the display.
+- SGR _(Select Graphic Rendition)_: Manipulate text styling (bold, underline, blink, colors, etc.).
+- ED _(Erase Display)_: Erase (parts of) the display.
+- EL _(Erase In Line)_: Erase (parts of) the current line.
 
 Other Control Sequences – such as moving the cursor – are not (yet) supported.
 
