@@ -75,10 +75,10 @@ class Ansi
      */
     public function flush($resetAfterwards = true)
     {
-        if ($this->writer instanceof Writers\FlushableInterFace) {
+        if ($this->writer instanceof Writers\FlushableInterface) {
             return $this->writer->flush($resetAfterwards);
         } else {
-            throw new \Exception('Flushing a non FlushableInterFace is not possible');
+            throw new \Exception('Flushing a non FlushableInterface is not possible');
         }
     }
 

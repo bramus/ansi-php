@@ -5,7 +5,7 @@ namespace Bramus\Ansi\Writers;
 /**
  * Buffers data for another WriterInterface until asked to flush the buffer to it
  */
-class BufferWriter implements WriterInterface, FlushableInterFace
+class BufferWriter implements WriterInterface, FlushableInterface
 {
     /**
      * The buffer that holds the data
