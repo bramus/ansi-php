@@ -15,6 +15,17 @@ Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
 
 _(Sidenote: An “ANSI Escape Sequence” is a special type of “ANSI Control Sequence” which starts with the ESC ANSI Control Function. The terms are not interchangeable.)_
 
+## Features
+
+When it comes to ANSI Control Functions `bramus/ansi-php` supports:
+
+- `BS`: Backspace
+- `BEL`: Bell
+- `CR`: Carriage Return
+- `ESC`: Escape
+- `LF`: Line Feed
+- `TAB`: Tab
+
 When it comes to ANSI Escape Sequences `bramus/ansi-php` supports:
 
 - SGR _(Select Graphic Rendition)_: Manipulate text styling (bold, underline, blink, colors, etc.).
@@ -97,6 +108,12 @@ __IMPORTANT:__ Select Graphic Rendition works in such a way that text styling  y
 - `eraseDisplay()`: Erase the entire screen and moves the cursor to home.
 - `eraseDisplayUp()`: Erase the screen from the current line up to the top of the screen.
 - `eraseDisplayDown()`: Erase the screen from the current line down to the bottom of the screen.
+
+### EL ANSI Escape Sequence shorthands:
+
+- `eraseLine()`: Erase the entire current line.
+- `eraseLineToEOL()`: Erase from the current cursor position to the end of the current line.
+- `eraseLineToSOL()`: Erases from the current cursor position to the start of the current line.
 
 
 ## Examples
