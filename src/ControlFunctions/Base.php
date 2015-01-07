@@ -19,18 +19,12 @@ class Base
 
     /**
      * ANSI Control Function
-     * @param string  $controlCharacter The Control Character to use
-     * @param boolean $outputNow        Output the resulting ANSI Code right now?
+     * @param string $controlCharacter The Control Character to use
      */
-    public function __construct($controlCharacter, $outputNow = false)
+    public function __construct($controlCharacter)
     {
         // Store the Control Character
         $this->setControlCharacter($controlCharacter);
-
-        // Output now if requested
-        if ($outputNow) {
-            $this->e();
-        }
     }
 
     /**
@@ -52,6 +46,15 @@ class Base
     public function get()
     {
         return $this->controlCharacter;
+    }
+
+    /**
+     * Return the ANSI Code upon __toString
+     * @return string The ANSI Code
+     */
+    public function __toString()
+    {
+        return $this->get();
     }
 
     /**

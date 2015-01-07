@@ -6,8 +6,8 @@ namespace Bramus\Ansi\ControlFunctions;
 
 class Tab extends Base
 {
-    public function __construct($outputNow = false)
+    public function __construct()
     {
-        parent::__construct(Enums\C0::TAB, $outputNow);
+        parent::__construct(Enums\C0::TAB);
     }
 }

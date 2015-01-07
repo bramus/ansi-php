@@ -47,50 +47,72 @@ An example library that uses `bramus/ansi-php` is [`bramus/monolog-colored-line-
 Installation is possible using Composer
 
 ```
-composer require bramus/ansi-php ~2.0
+composer require bramus/ansi-php ~3.0
 ```
 
 ## Usage
 
-The easiest way to use _ANSI PHP_ is to use the bundled `Ansi` class which provides easy shorthands to working with `bramus/ansi-php`. If you're feeling adventurous, you're of course free to use the raw `ControlFunction` and `ControlSequence` classes.
+The easiest way to use _ANSI PHP_ is to use the bundled `Ansi` helper class which provides easy shorthands to working with `bramus/ansi-php`. The `Ansi` class is written in such a way that you can chain calls to one another.
 
-The `Ansi` class is written in such a way that you can chain calls to one another. To achieve this `Ansi` stores all text built in a local variable `$sequence`. It is stored there until you retrieve it using the `get()` function. Alternatively use `e()` to echo the built contents.
+If you're feeling adventurous, you're of course free to use the raw `ControlFunction` and `ControlSequence` classes.
 
 ### Quick example
 
 ```
 use \Bramus\Ansi\Ansi;
+use \Bramus\Ansi\Writers\StreamWriter;
 use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
 // Create Ansi Instance
-$ansi = new Ansi();
+$ansi = new Ansi(new StreamWriter('php://stdout'));
 
 // Output some styled text on screen, along with a Line Feed and a Bell
-echo $ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('My text will be white on a red background and I will be blinking. A bell is coming up ...')->nostyle()->lf()->bell()->get();
+$ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))
+     ->blink()
+     ->text('I will be blinking red on a wite background.)
+     ->nostyle()
+     ->text(' And I will be normally styled.')
+     ->lf()
+     ->text('Ooh, a bell is coming ...')
+     ->bell();
 ```
 
 See more examples further down on how to use these.
 
+## Concepts
+
+Since v3.0 `bramus/ansi-php` uses the concept of writers to write the data to. By default a `StreamWriter` writing to `php://stdout` is used.
+
+The following writers are provided
+
+- `StreamWriter`: Writes the data to a stream. Just pass in the path to a file and it will open a stream for you. Defaults to writing to `php://stdout`.
+- `BufferWriter`: Writes the data to a buffer. When calling `flush()` the contents of the buffer will be returned.
+- `ProxyWriter`: Acts as a proxy to another writer. Writes the data to an internal buffer. When calling `flush()` the writer will first write the data to the other writer before returning it.
+
+## The `Ansi` helper class functions
+
 ### Core functions:
 
-- `get()`: Get the currently built ANSI sequence
-- `e()`: Output the currently built ANSI Sequence on screen (using `echo`)
-- `text()`: Add a piece of text to the ANSI sequence
-- `setSequence()`: Set the ANSI sequence to the given value
-- `resetSequence()`: Reset the currently built ANSI sequence
+- `text($text)`: Write a piece of data to the writer
+- `setWriter(\Bramus\Ansi\Writers\WriterInterface $writer)`: Sets the writer
+- `getWriter()`: Gets the writer
 
 ### ANSI Control Function shorthands:
 
-- `bell()`:  Add a Bell Control Character (`\a`) to the sequence
-- `backspace()`:  Add a Backspace Control Character (`\b`) to the sequence
-- `tab()`:  Add a Tab Control Character (`\t`) to the sequence
-- `lf()`:  Add a Line Feed Control Character (`\n`) to the sequence
-- `cr()`:  Add a Carriage Return Control Character (`\r`) to the sequence
-- `esc()`:  Add a Escape Control Character to the sequence
+These shorthands write a Control Character to the writer.
+
+- `bell()`:  Bell Control Character (`\a`)
+- `backspace()`:  Backspace Control Character (`\b`)
+- `tab()`:  Tab Control Character (`\t`)
+- `lf()`:  Line Feed Control Character (`\n`)
+- `cr()`:  Carriage Return Control Character (`\r`)
+- `esc()`:  Escape Control Character
 
 ### SGR ANSI Escape Sequence shorthands:
 
-- `nostyle()` or `reset()`: Remove all text styling. (colors, bold, etc)
+These shorthands write SGR ANSI Escape Sequences to the writer.
+
+- `nostyle()` or `reset()`: Remove all text styling (colors, bold, etc)
 - `color()`: Set the foreground and/or backgroundcolor of the text. _(see further)_
 - `bold()` or `bright()`: Bold: On. On some systems "Intensity: Bright"
 - `normal()`: Bold: Off. On some systems "Intensity: Normal"
@@ -105,16 +127,24 @@ __IMPORTANT:__ Select Graphic Rendition works in such a way that text styling  y
 
 ### ED ANSI Escape Sequence shorthands:
 
+These shorthands write ED ANSI Escape Sequences to the writer.
+
 - `eraseDisplay()`: Erase the entire screen and moves the cursor to home.
 - `eraseDisplayUp()`: Erase the screen from the current line up to the top of the screen.
 - `eraseDisplayDown()`: Erase the screen from the current line down to the bottom of the screen.
 
 ### EL ANSI Escape Sequence shorthands:
 
+These shorthands write EL ANSI Escape Sequences to the writer.
+
 - `eraseLine()`: Erase the entire current line.
 - `eraseLineToEOL()`: Erase from the current cursor position to the end of the current line.
 - `eraseLineToSOL()`: Erases from the current cursor position to the start of the current line.
 
+### Extra functions
+
+- `flush()` or `get()`: Retrieve contents of a `FlushableWriter` writer.
+- `e()`: Echo the contents of a `FlushableWriter` writer.
 
 ## Examples
 
@@ -125,13 +155,26 @@ __IMPORTANT:__ Select Graphic Rendition works in such a way that text styling  y
 $ansi = new \Bramus\Ansi\Ansi();
 
 // This will output a Bell
-$ansi->bell()->e();
-
-// This too will output a Bell
-echo $ansi->bell()->get();
+$ansi->bell();
 
 // This will output some text
-$ansi->text('Hello World!')->e();
+$ansi->text('Hello World!');
+```
+
+### Using a `FlushableWriter`
+
+```
+// Create Ansi Instance
+$ansi = new \Bramus\Ansi\Ansi(new \Bramus\Ansi\Writers\BufferWriter());
+
+// This will append a bell to the buffer. It will not output it.
+$ansi->bell();
+
+// This will append a bell to the buffer. It will not output it.
+$ansi->text('Hello World!');
+
+// Now we'll output it
+echo $ansi->get();
 ```
 
 ### Chaining
@@ -143,16 +186,15 @@ $ansi->text('Hello World!')->e();
 $ansi = new \Bramus\Ansi\Ansi();
 
 // This will output a Line Feed, some text, a Bell, and a Line Feed
-echo $ansi->lf()->text('hello')->bell()->lf()->get();
+$ansi->lf()->text('hello')->bell()->lf();
 
 ```
-Don't forget to call `e()` or `get()` at the end.
 
 ### Styling Text: The Basics
 
 ```
 $ansi = new \Bramus\Ansi\Ansi();
-echo $ansi->bold()->underline()->text('I will be bold and underlined')->lf()->get();
+$ansi->bold()->underline()->text('I will be bold and underlined')->lf();
 ```
 
 __IMPORTANT__ Select Graphic Rendition works in such a way that text styling  you have set will remain active until you call `nostyle()` or `reset()` to return to the default styling.
@@ -161,10 +203,10 @@ __IMPORTANT__ Select Graphic Rendition works in such a way that text styling  yo
 ```
 $ansi = new \Bramus\Ansi\Ansi();
 
-echo $ansi->bold()->underline()->text('I will be bold and underlined')->lf()->get();
-echo $ansi->text('I will also be bold because nostyle() has not been called yet')->lf()->get();
-echo $ansi->nostyle()->blink()->text('I will be blinking')->nostyle()->lf()->get();
-echo $ansi->text('I will be normal because nostyle() was called on the previous line')->get();
+$ansi->bold()->underline()->text('I will be bold and underlined')->lf();
+$ansi->text('I will also be bold because nostyle() has not been called yet')->lf();
+$ansi->nostyle()->blink()->text('I will be blinking')->nostyle()->lf();
+$ansi->text('I will be normal because nostyle() was called on the previous line');
 
 ```
 
@@ -219,7 +261,9 @@ use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
 $ansi = new \Bramus\Ansi\Ansi();
 
-echo $ansi->color(SGR::COLOR_FG_RED)->text('I will be red')->nostyle()->get();
+$ansi->color(SGR::COLOR_FG_RED)
+     ->text('I will be red')
+     ->nostyle();
 ```
 
 To set the foreground and background color in one call, pass them using an array to `$ansi->color()`
@@ -228,7 +272,38 @@ use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
 $ansi = new \Bramus\Ansi\Ansi();
 
-echo $ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))->blink()->text('I will be white on a red background and will be blinking')->nostyle()->get();
+$ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))
+     ->blink()
+     ->text('I will be blinking red on a wrhite background.')
+     ->nostyle();
+```
+
+### Using the raw classes
+
+As all raw `ControlFunction` and `ControlSequence` classes are provided with a `__toString()` function it's perfectly possible to directly `echo` some `bramus/ansi-php` instance.
+
+```
+// Output a Bell Control Character
+echo new \Bramus\Ansi\ControlFunctions\Bell();
+
+// Output an ED instruction, to erase the entire screen
+echo new \Bramus\Ansi\ControlSequences\EscapeSequences\ED(
+    \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\ED::ALL
+);
+```
+
+To fetch their contents, use the `get()` function:
+
+```
+// Get ANSI string for a Bell Control Character
+$bell = (new \Bramus\Ansi\ControlFunctions\Bell())->get();
+
+// Get ANSI string for an ED instruction, to erase the entire screen
+$eraseDisplay = (new \Bramus\Ansi\ControlSequences\EscapeSequences\ED(
+    \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\ED::ALL
+))->get();
+
+echo $bell . $bell . $eraseDisplay . $bell;
 ```
 
 ## Unit Testing

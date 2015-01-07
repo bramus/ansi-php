@@ -7,7 +7,7 @@ class ControlFunctionTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
-        $this->helper = new Ansi();
+        $this->helper = new Ansi(new \Bramus\Ansi\Writers\BufferWriter());
     }
 
     protected function tearDown()

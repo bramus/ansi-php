@@ -1,6 +1,7 @@
 <?php
 
 use \Bramus\Ansi\Ansi;
+use \Bramus\Ansi\Writers\StreamWriter;
 use \Bramus\Ansi\ControlFunctions\Enums\C0;
 use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\FinalByte;
 use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
@@ -9,7 +10,7 @@ class ControlSequenceTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
-        $this->helper = new Ansi();
+        $this->helper = new Ansi(new \Bramus\Ansi\Writers\BufferWriter());
     }
 
     protected function tearDown()
@@ -36,7 +37,7 @@ class ControlSequenceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(
             $test2,
             C0::ESC.'['.SGR::STYLE_NONE.FinalByte::SGR
-        );
+        );;
     }
 
     public function testSGRChained()

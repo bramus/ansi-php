@@ -22,15 +22,10 @@ class Base
      * @param \Bramus\Ansi\ControlFunction $controlSequenceIntroducer A ControlFunction that acts as the Control Sequence Introducer (CSI)
      * @param boolean                      $outputNow                 Output the resulting ANSI Code right now?
      */
-    public function __construct($controlSequenceIntroducer, $outputNow = false)
+    public function __construct($controlSequenceIntroducer)
     {
         // Store datamembers
         $this->setControlSequenceIntroducer($controlSequenceIntroducer);
-
-        // Output now if requested
-        if ($outputNow) {
-            $this->e();
-        }
     }
 
     /**
@@ -78,6 +73,15 @@ class Base
         }
 
         return $toReturn;
+    }
+
+    /**
+     * Return the ANSI Code upon __toString
+     * @return string The ANSI Code
+     */
+    public function __toString()
+    {
+        return $this->get();
     }
 
     /**
