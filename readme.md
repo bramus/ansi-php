@@ -4,7 +4,7 @@ ANSI Control Functions and ANSI Control Sequences for PHP CLI Apps
 
 Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
 
-[![Build Status](https://api.travis-ci.org/bramus/ansi-php.png)](http://travis-ci.org/bramus/ansi-php)
+[![Build Status](https://img.shields.io/travis/bramus/ansi-php.svg?style=flat-square)](http://travis-ci.org/bramus/ansi-php) ![Source](http://img.shields.io/badge/source-bramus/ansi--php-blue.svg?style=flat-square) ![Version](https://img.shields.io/packagist/v/bramus/ansi-php.svg?style=flat-square) ![Downloads](https://img.shields.io/packagist/dt/bramus/ansi-php.svg?style=flat-square) ![License](https://img.shields.io/packagist/l/bramus/ansi-php.svg?style=flat-square)
 
 ## About
 
