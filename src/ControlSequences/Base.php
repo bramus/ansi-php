@@ -47,6 +47,15 @@ class Base
     }
 
     /**
+     * Gets the CSI
+     * @return string The CSI
+     */
+    public function getControlSequenceIntroducer()
+    {
+        return $this->controlSequenceIntroducer;
+    }
+
+    /**
      * Build and return the ANSI Code
      * @return string The ANSI Code
      */
