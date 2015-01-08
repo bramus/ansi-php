@@ -3,60 +3,81 @@
 use \Bramus\Ansi\Ansi;
 use \Bramus\Ansi\Writers\StreamWriter;
 use \Bramus\Ansi\ControlFunctions\Enums\C0;
+use \Bramus\Ansi\ControlSequences\EscapeSequences\SGR as EscapeSequenceSGR;
 use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\FinalByte;
 use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
-class ControlSequenceTest extends PHPUnit_Framework_TestCase
+class EscapeSequenceSGRTest extends PHPUnit_Framework_TestCase
 {
-    protected function setUp()
-    {
-        $this->helper = new Ansi(new \Bramus\Ansi\Writers\BufferWriter());
-    }
-
-    protected function tearDown()
-    {
-        // ...
-    }
 
     public function testInstantiation()
     {
-        $this->assertInstanceOf('\Bramus\Ansi\Ansi', $this->helper);
-    }
+        $es = new EscapeSequenceSGR();
 
-    public function testSGR()
-    {
-        $test = $this->helper->sgr(SGR::COLOR_FG_RED)->get();
+        $this->assertInstanceOf('\Bramus\Ansi\ControlSequences\EscapeSequences\SGR', $es);
 
+        // Final byte must be SGR
         $this->assertEquals(
-            $test,
-            C0::ESC.'['.SGR::COLOR_FG_RED.FinalByte::SGR
+            $es->getFinalByte(),
+            FinalByte::SGR
         );
 
-        $test2 = $this->helper->sgr()->get();
-
+        // Parameter Byte must be SGR::STYLE_NONE
         $this->assertEquals(
-            $test2,
+            $es->getParameterBytes(),
+            SGR::STYLE_NONE
+        );
+    }
+
+    public function testSgrRaw()
+    {
+        // One Parameter
+        $this->assertEquals(
+            new EscapeSequenceSGR(SGR::STYLE_NONE),
             C0::ESC.'['.SGR::STYLE_NONE.FinalByte::SGR
-        );;
-    }
+        );
 
-    public function testSGRChained()
-    {
-        $test = $this->helper->sgr(array(SGR::COLOR_FG_RED, SGR::STYLE_BLINK, SGR::STYLE_BOLD))->text('te')->sgr(array(SGR::COLOR_BG_GREEN))->text('st')->sgr()->get();
-
+        // Multiple Parameters
         $this->assertEquals(
-            $test,
-            C0::ESC.'['.SGR::COLOR_FG_RED.';'.SGR::STYLE_BLINK.';'.SGR::STYLE_BOLD.FinalByte::SGR.'te'.C0::ESC.'['.SGR::COLOR_BG_GREEN.FinalByte::SGR.'st'.C0::ESC.'['.SGR::STYLE_NONE.FinalByte::SGR
+            new EscapeSequenceSGR(array(SGR::STYLE_NONE, SGR::STYLE_BOLD)),
+            C0::ESC.'['.SGR::STYLE_NONE.';'.SGR::STYLE_BOLD.FinalByte::SGR
         );
     }
 
-    public function testSGRShorthands()
+    public function testAnsiSgrShorthandsSingle()
     {
-        $test = $this->helper->bold()->color(SGR::COLOR_FG_RED)->underline()->blink()->get().'test'.$this->helper->reset()->get();
+        $a = new Ansi(new \Bramus\Ansi\Writers\BufferWriter());
 
         $this->assertEquals(
-            $test,
-            C0::ESC.'['.SGR::STYLE_BOLD.FinalByte::SGR.C0::ESC.'['.SGR::COLOR_FG_RED.FinalByte::SGR.C0::ESC.'['.SGR::STYLE_UNDERLINE.FinalByte::SGR.C0::ESC.'['.SGR::STYLE_BLINK.FinalByte::SGR.'test'.C0::ESC.'['.SGR::STYLE_NONE.FinalByte::SGR
+            $a->sgr(SGR::COLOR_FG_RED)->get(),
+            new EscapeSequenceSGR(SGR::COLOR_FG_RED)
+        );
+
+        $this->assertEquals(
+            $a->sgr()->get(),
+            new EscapeSequenceSGR(SGR::STYLE_NONE)
+        );
+    }
+
+    public function testAnsiSgrShorthandChained()
+    {
+
+        $a = new Ansi(new \Bramus\Ansi\Writers\BufferWriter());
+
+        $this->assertEquals(
+            $a->sgr(SGR::COLOR_FG_RED)->text('test')->get(),
+            (new EscapeSequenceSGR(SGR::COLOR_FG_RED)).'test'
+        );
+    }
+
+    public function testAnsiSgrShorthandsChained()
+    {
+
+        $a = new Ansi(new \Bramus\Ansi\Writers\BufferWriter());
+
+        $this->assertEquals(
+            $a->bold()->underline()->color(SGR::COLOR_FG_RED)->underline()->blink()->text('test')->reset()->get(),
+            (new EscapeSequenceSGR(SGR::STYLE_BOLD)).(new EscapeSequenceSGR(SGR::STYLE_UNDERLINE)).(new EscapeSequenceSGR(SGR::COLOR_FG_RED)).(new EscapeSequenceSGR(SGR::STYLE_UNDERLINE)).(new EscapeSequenceSGR(SGR::STYLE_BLINK)).'test'.(new EscapeSequenceSGR(SGR::STYLE_NONE))
         );
     }
 }
