@@ -10,4 +10,10 @@ interface FlushableInterface
      * @return string  The data
      */
     public function flush($resetAfterwards = true);
+
+    /**
+     * Reset/Clear the buffer
+     * @return BufferedStreamWriter self, for chaining
+     */
+    public function clear();
 }
