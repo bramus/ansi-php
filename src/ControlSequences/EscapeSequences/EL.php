@@ -17,17 +17,15 @@ class EL extends Base
     /**
      * EL - ERASE IN LINE
      * @param mixed   $parameterBytes The Parameter Bytes
-     * @param boolean $outputNow      Output the resulting ANSI Code right now?
      */
-    public function __construct($parameterBytes, $outputNow = false)
+    public function __construct($parameterBytes)
     {
         // Store the parameter bytes
         $this->setParameterBytes($parameterBytes);
 
         // Call Parent Constructor (which will store finalByte)
         parent::__construct(
-            \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\FinalByte::EL,
-            $outputNow
+            \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\FinalByte::EL
         );
     }
 }

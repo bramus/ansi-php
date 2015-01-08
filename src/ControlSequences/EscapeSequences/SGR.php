@@ -18,9 +18,8 @@ class SGR extends Base
     /**
      * SGR - SELECT GRAPHIC RENDITION
      * @param mixed   $parameterBytes The Parameter Bytes
-     * @param boolean $outputNow      Output the resulting ANSI Code right now?
      */
-    public function __construct($parameterBytes = null, $outputNow = false)
+    public function __construct($parameterBytes = null)
     {
         // Make sure we have parameter bytes
         if (!$parameterBytes) {
@@ -32,8 +31,7 @@ class SGR extends Base
 
         // Call Parent Constructor (which will store finalByte)
         parent::__construct(
-            \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\FinalByte::SGR,
-            $outputNow
+            \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\FinalByte::SGR
         );
     }
 }

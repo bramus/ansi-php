@@ -16,17 +16,15 @@ class Base extends \Bramus\Ansi\ControlSequences\Base
     /**
      * ANSI Escape Sequence
      * @param string  $finalByte The Final Byte of the Escape Sequence
-     * @param boolean $outputNow Output the resulting ANSI Code right now?
      */
-    public function __construct($finalByte, $outputNow = false)
+    public function __construct($finalByte)
     {
         // Store the final byte
         $this->setFinalByte($finalByte);
 
         // Call Parent Constructor
         parent::__construct(
-            new \Bramus\Ansi\ControlFunctions\Escape(),
-            $outputNow
+            new \Bramus\Ansi\ControlFunctions\Escape()
         );
     }
 }
