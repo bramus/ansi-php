@@ -312,7 +312,7 @@ echo $bell . $bell . $eraseDisplay . $bell;
 
 - If PHPUnit is installed globally run `phpunit` to run the tests.
 
-- If PHPUnit is not installed globally, install it locally throuh composer by running `composer install --dev`. Run the tests themselves by calling `vendor/bin/phpunit`.
+- If PHPUnit is not installed globally, install it locally throuh composer by running `composer install --dev`. Run the tests themselves by calling `vendor/bin/phpunit` or `composer test`
 
 Unit tests are also automatically run [on Travis CI](http://travis-ci.org/bramus/ansi-php)
 

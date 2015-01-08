@@ -19,5 +19,8 @@
         "psr-4": {
             "Bramus\\Ansi\\": "src/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }
