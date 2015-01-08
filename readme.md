@@ -1,10 +1,10 @@
 # ANSI PHP
 
+[![Build Status](https://img.shields.io/travis/bramus/ansi-php.svg?style=flat-square)](http://travis-ci.org/bramus/ansi-php) ![Source](http://img.shields.io/badge/source-bramus/ansi--php-blue.svg?style=flat-square) ![Version](https://img.shields.io/packagist/v/bramus/ansi-php.svg?style=flat-square) ![Downloads](https://img.shields.io/packagist/dt/bramus/ansi-php.svg?style=flat-square) ![License](https://img.shields.io/packagist/l/bramus/ansi-php.svg?style=flat-square)
+
 ANSI Control Functions and ANSI Control Sequences for PHP CLI Apps
 
 Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
-
-[![Build Status](https://img.shields.io/travis/bramus/ansi-php.svg?style=flat-square)](http://travis-ci.org/bramus/ansi-php) ![Source](http://img.shields.io/badge/source-bramus/ansi--php-blue.svg?style=flat-square) ![Version](https://img.shields.io/packagist/v/bramus/ansi-php.svg?style=flat-square) ![Downloads](https://img.shields.io/packagist/dt/bramus/ansi-php.svg?style=flat-square) ![License](https://img.shields.io/packagist/l/bramus/ansi-php.svg?style=flat-square)
 
 ## About
 
@@ -161,7 +161,11 @@ $ansi->bell();
 $ansi->text('Hello World!');
 ```
 
+_NOTE:_ As no `$writer` is passed into the constructor of `\Bramus\Ansi\Ansi`, the default `StreamWriter` writing to `php://stdout` is used.
+
 ### Using a `FlushableWriter`
+
+Flushable Writers are writers that cache the data and only output it when flushed using its `flush()` function. The `BufferWriter` and `ProxyWriter` implement this interface.
 
 ```
 // Create Ansi Instance
@@ -232,7 +236,7 @@ Colors, and other text styling options, are defined as contants on `\Bramus\Ansi
 - `SGR::COLOR_FG_PURPLE_BRIGHT`: Purple Foreground Color (Bright)
 - `SGR::COLOR_FG_CYAN_BRIGHT`: Cyan Foreground Color (Bright)
 - `SGR::COLOR_FG_WHITE_BRIGHT`: White Foreground Color (Bright)
-- `SGR::COLOR_FG_RESET': Default Foreground Color
+- `SGR::COLOR_FG_RESET`: Default Foreground Color
 
 #### Background Colors
 
@@ -252,7 +256,7 @@ Colors, and other text styling options, are defined as contants on `\Bramus\Ansi
 - `SGR::COLOR_BG_PURPLE_BRIGHT`: Purple Background Color (Bright)
 - `SGR::COLOR_BG_CYAN_BRIGHT`: Cyan Background Color (Bright)
 - `SGR::COLOR_BG_WHITE_BRIGHT`: White Background Color (Bright)
-- `SGR::COLOR_BG_RESET': Default Background Color
+- `SGR::COLOR_BG_RESET`: Default Background Color
 
 Pass one of these into `$ansi->color()` and the color will be set.
 
