@@ -69,7 +69,7 @@ $ansi = new Ansi(new StreamWriter('php://stdout'));
 // Output some styled text on screen, along with a Line Feed and a Bell
 $ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))
      ->blink()
-     ->text('I will be blinking red on a wite background.)
+     ->text('I will be blinking red on a white background.')
      ->nostyle()
      ->text(' And I will be normally styled.')
      ->lf()
