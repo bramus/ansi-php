@@ -58,7 +58,7 @@ If you're feeling adventurous, you're of course free to use the raw `ControlFunc
 
 ### Quick example
 
-```
+```php
 use \Bramus\Ansi\Ansi;
 use \Bramus\Ansi\Writers\StreamWriter;
 use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
@@ -150,7 +150,7 @@ These shorthands write EL ANSI Escape Sequences to the writer.
 
 ### The Basics
 
-```
+```php
 // Create Ansi Instance
 $ansi = new \Bramus\Ansi\Ansi();
 
@@ -167,7 +167,7 @@ _NOTE:_ As no `$writer` is passed into the constructor of `\Bramus\Ansi\Ansi`, t
 
 Flushable Writers are writers that cache the data and only output it when flushed using its `flush()` function. The `BufferWriter` and `ProxyWriter` implement this interface.
 
-```
+```php
 // Create Ansi Instance
 $ansi = new \Bramus\Ansi\Ansi(new \Bramus\Ansi\Writers\BufferWriter());
 
@@ -185,7 +185,7 @@ echo $ansi->get();
 
 `bramus/ansi-php`'s wrapper `Ansi` class supports chaining.
 
-```
+```php
 // Create Ansi Instance
 $ansi = new \Bramus\Ansi\Ansi();
 
@@ -196,7 +196,7 @@ $ansi->lf()->text('hello')->bell()->lf();
 
 ### Styling Text: The Basics
 
-```
+```php
 $ansi = new \Bramus\Ansi\Ansi();
 $ansi->bold()->underline()->text('I will be bold and underlined')->lf();
 ```
@@ -204,7 +204,7 @@ $ansi->bold()->underline()->text('I will be bold and underlined')->lf();
 __IMPORTANT__ Select Graphic Rendition works in such a way that text styling  you have set will remain active until you call `nostyle()` or `reset()` to return to the default styling.
 
 
-```
+```php
 $ansi = new \Bramus\Ansi\Ansi();
 
 $ansi->bold()->underline()->text('I will be bold and underlined')->lf();
@@ -260,7 +260,7 @@ Colors, and other text styling options, are defined as contants on `\Bramus\Ansi
 
 Pass one of these into `$ansi->color()` and the color will be set.
 
-```
+```php
 use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
 $ansi = new \Bramus\Ansi\Ansi();
@@ -286,7 +286,7 @@ $ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))
 
 As all raw `ControlFunction` and `ControlSequence` classes are provided with a `__toString()` function it's perfectly possible to directly `echo` some `bramus/ansi-php` instance.
 
-```
+```php
 // Output a Bell Control Character
 echo new \Bramus\Ansi\ControlFunctions\Bell();
 
@@ -298,7 +298,7 @@ echo new \Bramus\Ansi\ControlSequences\EscapeSequences\ED(
 
 To fetch their contents, use the `get()` function:
 
-```
+```php
 // Get ANSI string for a Bell Control Character
 $bell = (new \Bramus\Ansi\ControlFunctions\Bell())->get();
 
