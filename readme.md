@@ -1,6 +1,6 @@
 # ANSI PHP
 
-[![Build Status](https://img.shields.io/travis/bramus/ansi-php.svg?style=flat-square)](http://travis-ci.org/bramus/ansi-php) ![Source](http://img.shields.io/badge/source-bramus/ansi--php-blue.svg?style=flat-square) ![Version](https://img.shields.io/packagist/v/bramus/ansi-php.svg?style=flat-square) ![Downloads](https://img.shields.io/packagist/dt/bramus/ansi-php.svg?style=flat-square) ![License](https://img.shields.io/packagist/l/bramus/ansi-php.svg?style=flat-square)
+[![Build Status](https://img.shields.io/travis/bramus/ansi-php.svg?style=flat-square)](http://travis-ci.org/bramus/ansi-php) [![Source](http://img.shields.io/badge/source-bramus/ansi--php-blue.svg?style=flat-square)](https://github.com/bramus/ansi-php) [![Version](https://img.shields.io/packagist/v/bramus/ansi-php.svg?style=flat-square)](https://packagist.org/packages/bramus/ansi-php) [![Downloads](https://img.shields.io/packagist/dt/bramus/ansi-php.svg?style=flat-square)](https://packagist.org/packages/bramus/ansi-php/stats) [![License](https://img.shields.io/packagist/l/bramus/ansi-php.svg?style=flat-square)](https://github.com/bramus/ansi-php/blob/master/LICENSE)
 
 ANSI Control Functions and ANSI Control Sequences for PHP CLI Apps
 
