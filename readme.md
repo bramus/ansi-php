@@ -46,7 +46,7 @@ An example library that uses `bramus/ansi-php` is [`bramus/monolog-colored-line-
 
 Installation is possible using Composer
 
-```
+```shell
 composer require bramus/ansi-php ~3.0
 ```
 
@@ -271,7 +271,8 @@ $ansi->color(SGR::COLOR_FG_RED)
 ```
 
 To set the foreground and background color in one call, pass them using an array to `$ansi->color()`
-```
+
+```php
 use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
 $ansi = new \Bramus\Ansi\Ansi();
