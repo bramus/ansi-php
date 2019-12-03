@@ -68,12 +68,12 @@ class Base
 
         // Append Parameter Byte (if any)
         if (isset($this->parameterBytes) && sizeof((array) $this->parameterBytes) > 0) {
-            $toReturn .= implode($this->parameterBytes, ';');
+            $toReturn .= implode(';', $this->parameterBytes);
         }
 
         // Append Intermediate Bytes (if any)
         if (isset($this->intermediateBytes) && sizeof((array) $this->intermediateBytes) > 0) {
-            $toReturn .= implode($this->intermediateBytes, ';'); // @TODO: Verify that ';' is the glue for intermediate bytes
+            $toReturn .= implode(';', $this->intermediateBytes); // @TODO: Verify that ';' is the glue for intermediate bytes
         }
 
         // Append Final Byte (if any)
