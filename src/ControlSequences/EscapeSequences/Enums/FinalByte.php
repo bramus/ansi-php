@@ -7,6 +7,17 @@ namespace Bramus\Ansi\ControlSequences\EscapeSequences\Enums;
 class FinalByte
 {
     /**
+     * CURSOR MOVEMENT 
+     *
+     * @type string
+     */
+    const CUU = 'A'; // Cursor up
+    const CUD = 'B'; // Cursor down
+    const CUF = 'C'; // Cursor forward
+    const CUB = 'D'; // Cursor back
+    const CUP = 'H'; // Cursor (move to ) position
+
+    /**
      * ED - ERASE DISPLAY (ERASE IN PAGE)
      *
      * ED causes some or all character positions of the active page
