@@ -3,6 +3,7 @@
 namespace Bramus\Ansi\Traits\EscapeSequences;
 
 use Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR as EnumSGR;
+use Bramus\Ansi\Ansi;
 
 /**
  * Trait containing the SGR Escape Function Shorthands

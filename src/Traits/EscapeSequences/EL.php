@@ -3,6 +3,7 @@
 namespace Bramus\Ansi\Traits\EscapeSequences;
 
 use Bramus\Ansi\ControlSequences\EscapeSequences\Enums\EL as EnumEL;
+use Bramus\Ansi\Ansi;
 
 /**
  * Trait containing the EL Escape Function Shorthands
