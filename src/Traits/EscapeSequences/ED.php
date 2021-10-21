@@ -3,6 +3,7 @@
 namespace Bramus\Ansi\Traits\EscapeSequences;
 
 use Bramus\Ansi\ControlSequences\EscapeSequences\Enums\ED as EnumED;
+use Bramus\Ansi\Ansi;
 
 /**
  * Trait containing the ED Escape Function Shorthands
