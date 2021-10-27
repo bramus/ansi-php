@@ -11,7 +11,7 @@ trait EL
 {
     /**
      * Manually use EL (ERASE IN LINE)
-     * @param  array $parameterByte Parameter byte to the EL Escape Code
+     * @param  array $data Parameter byte to the EL Escape Code
      * @return Ansi  self, for chaining
      */
     public function el($data)
