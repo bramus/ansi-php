@@ -11,14 +11,14 @@ class Ansi
      * Traits to use
      */
     use Traits\ControlFunctions;
-    use Traits\EscapeSequences\SGR;
     use Traits\EscapeSequences\ED;
     use Traits\EscapeSequences\EL;
-    use Traits\EscapeSequences\CUU;
+    use Traits\EscapeSequences\CUB;
     use Traits\EscapeSequences\CUD;
     use Traits\EscapeSequences\CUF;
-    use Traits\EscapeSequences\CUB;
     use Traits\EscapeSequences\CUP;
+    use Traits\EscapeSequences\CUU;
+    use Traits\EscapeSequences\SGR;
 
     /**
      * The writer to write the data to

@@ -1,10 +1,12 @@
 <?php
 /**
  * CUF - CURSOR FORWARD
- *
- * Moves the cursor
+ * 
+ * CUF causes the active presentation position to be moved rightwards
+ * in the presentation component by n character positions if the
+ * character path is horizontal, or by n line positions if the
+ * character path is vertical, where n equals the value of Pn.
  */
-
 namespace Bramus\Ansi\ControlSequences\EscapeSequences;
 
 class CUF extends Base
@@ -13,10 +15,10 @@ class CUF extends Base
     use \Bramus\Ansi\ControlSequences\Traits\HasParameterBytes;
 
     /**
-     * SGR - SELECT GRAPHIC RENDITION
+     * CUF - CURSOR FORWARD
      * @param mixed   $parameterBytes The Parameter Bytes
      */
-    public function __construct($parameterBytes = null)
+    public function __construct($parameterBytes = 1)
     {
         // Store the parameter bytes
         $this->setParameterBytes($parameterBytes);

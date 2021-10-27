@@ -1,10 +1,12 @@
 <?php
 /**
- * CUP - CURSOR UP
+ * CUU - CURSOR UP
  *
- * Moves the cursor
+ * CUU causes the active presentation position to be moved upwards in
+ * the presentation component by n line positions if the character
+ * path is horizontal, or by n character positions if the character
+ * path is vertical, where n equals the value of Pn.
  */
-
 namespace Bramus\Ansi\ControlSequences\EscapeSequences;
 
 class CUU extends Base
@@ -13,10 +15,10 @@ class CUU extends Base
     use \Bramus\Ansi\ControlSequences\Traits\HasParameterBytes;
 
     /**
-     * SGR - SELECT GRAPHIC RENDITION
+     * CUU - CURSOR UP
      * @param mixed   $parameterBytes The Parameter Bytes
      */
-    public function __construct($parameterBytes = null)
+    public function __construct($parameterBytes = 1)
     {
         // Store the parameter bytes
         $this->setParameterBytes($parameterBytes);

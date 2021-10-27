@@ -9,7 +9,7 @@ trait CUU
 {
     /**
      * Manually use CUU (Move cursor up)
-     * @param  array $parameterByte Parameter byte to the CUU Escape Code
+     * @param  array $data Parameter byte to the CUU Escape Code
      * @return Ansi  self, for chaining
      */
     public function cuu($data = 1)
@@ -24,12 +24,12 @@ trait CUU
     }
 
     /**
-     * Move the cursor up x positions
-     * @param  integer  $positions the number of positions to move the cursor
+     * Move the cursor up n positions
+     * @param  integer  $n the number of positions to move the cursor
      * @return Ansi    self, for chaining
      */
-    public function cursorUp($positions = 1)
+    public function cursorUp($n = 1)
     {
-        return $this->cuu($positions);
+        return $this->cuu($n);
     }
 }

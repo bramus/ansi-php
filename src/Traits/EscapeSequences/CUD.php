@@ -9,7 +9,7 @@ trait CUD
 {
     /**
      * Manually use CUD (Move cursor down)
-     * @param  array $parameterByte Parameter byte to the CUU Escape Code
+     * @param  array $data Parameter byte to the CUD Escape Code
      * @return Ansi  self, for chaining
      */
     public function cud($data = 1)
@@ -24,12 +24,12 @@ trait CUD
     }
 
     /**
-     * Move the cursor x positions down
-     * @param  integer  $positions the number of positions to move the cursor
+     * Move the cursor n positions down
+     * @param  integer  $n the number of positions to move the cursor
      * @return Ansi     self, for chaining
      */
-    public function cursorDown($rows = 1)
+    public function cursorDown($n = 1)
     {
-        return $this->cud($rows);
+        return $this->cud($n);
     }
 }

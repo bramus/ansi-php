@@ -9,7 +9,7 @@ trait CUF
 {
     /**
      * Manually use CUF (Move cursor forward)
-     * @param  array $parameterByte Parameter byte to the CUF Escape Code
+     * @param  array $data Parameter byte to the CUF Escape Code
      * @return Ansi  self, for chaining
      */
     public function cuf($data = 1)
@@ -24,12 +24,12 @@ trait CUF
     }
 
     /**
-     * Move the cursor x positions forward
-     * @param  integer  $positions the number of positions to move the cursor
+     * Move the cursor n positions forward
+     * @param  integer  $n the number of positions to move the cursor
      * @return Ansi     self, for chaining
      */
-    public function cursorForward($positions = 1)
+    public function cursorForward($n = 1)
     {
-        return $this->cuf($positions);
+        return $this->cuf($n);
     }
 }

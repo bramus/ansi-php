@@ -1,10 +1,13 @@
 <?php
 /**
  * CUP - CURSOR POSITION
- *
- * Moves the cursor to x,y. 
+ * 
+ * CUP causes the active presentation position to be moved in the
+ * presentation component to the n-th line position according to the
+ * line progression and to the m-th character position according to
+ * the character path, where n equals the value of Pn1 and m equals
+ * the value of Pn2.
  */
-
 namespace Bramus\Ansi\ControlSequences\EscapeSequences;
 
 class CUP extends Base
@@ -13,10 +16,10 @@ class CUP extends Base
     use \Bramus\Ansi\ControlSequences\Traits\HasParameterBytes;
 
     /**
-     * SGR - SELECT GRAPHIC RENDITION
+     * CUP - CURSOR POSITION
      * @param mixed   $parameterBytes The Parameter Bytes
      */
-    public function __construct($parameterBytes = null)
+    public function __construct($parameterBytes = '1;1')
     {
         // Store the parameter bytes
         $this->setParameterBytes($parameterBytes);

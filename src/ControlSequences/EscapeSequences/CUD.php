@@ -1,10 +1,12 @@
 <?php
 /**
  * CUD - CURSOR DOWN
- *
- * Moves the cursor
+ * 
+ * CUD causes the active presentation position to be moved downwards
+ * in the presentation component by n line positions if the character
+ * path is horizontal, or by n character positions if the character
+ * path is vertical, where n equals the value of Pn.
  */
-
 namespace Bramus\Ansi\ControlSequences\EscapeSequences;
 
 class CUD extends Base
@@ -13,10 +15,10 @@ class CUD extends Base
     use \Bramus\Ansi\ControlSequences\Traits\HasParameterBytes;
 
     /**
-     * SGR - SELECT GRAPHIC RENDITION
+     * CUD - CURSOR DOWN
      * @param mixed   $parameterBytes The Parameter Bytes
      */
-    public function __construct($parameterBytes = null)
+    public function __construct($parameterBytes = 1)
     {
         // Store the parameter bytes
         $this->setParameterBytes($parameterBytes);

@@ -9,10 +9,10 @@ trait CUP
 {
     /**
      * Manually use CUP (Cursor position)
-     * @param  array $parameterByte Parameter byte to the CUP Escape Code
+     * @param  array $data Parameter byte to the CUP Escape Code
      * @return Ansi  self, for chaining
      */
-    public function cup($data = 1)
+    public function cup($data = '1;1')
     {
         // Write data to the writer
         $this->writer->write(
@@ -24,12 +24,13 @@ trait CUP
     }
 
     /**
-     * Move the cursor to coordinates x, y
-     * @param  array   $coords  Array containing the x and y coordinates to move the cursor to
+     * Move the cursor to coordinates n, m
+     * @param  integer  $n the row to move the cursor to
+     * @param  integer  $n the column to move the cursor to
      * @return Ansi    self, for chaining
      */
-    public function cursorPosition($coords = [1,1])
+    public function cursorPosition($n = 1, $m = 1)
     {
-        return $this->cup($coords);
+        return $this->cup("$n;$m");
     }
 }

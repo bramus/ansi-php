@@ -9,7 +9,7 @@ trait CUB
 {
     /**
      * Manually use CUB (Move cursor back)
-     * @param  array $parameterByte Parameter byte to the CUB Escape Code
+     * @param  array $data Parameter byte to the CUB Escape Code
      * @return Ansi  self, for chaining
      */
     public function cub($data = 1)
@@ -24,12 +24,12 @@ trait CUB
     }
 
     /**
-     * Move the cursor back x positions
-     * @param  integer  $positions the number of positions to move the cursor
+     * Move the cursor back n positions
+     * @param  integer  $n the number of positions to move the cursor
      * @return Ansi     self, for chaining
      */
-    public function cursorBack($positions = 1)
+    public function cursorBack($n = 1)
     {
-        return $this->cub($positions);
+        return $this->cub($n);
     }
 }
