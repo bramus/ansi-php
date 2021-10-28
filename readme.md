@@ -148,11 +148,11 @@ These shorthands write EL ANSI Escape Sequences to the writer.
 
 ### CUB/CUD/CUF/CUP/CUU ANSI Escape Sequence shorthands:
 
-- `cursorBack($n)`: Move cursor back `$n` positions _(default: 1)_
-- `cursorForward($n)`: Move cursor forward `$n` positions _(default: 1)_
-- `cursorDown($n)`: Move cursor down `$n` positions _(default: 1)_
-- `cursorUp($n)`: Move cursor up `$n` positions _(default: 1)_
-- `cursorPosition($n, $m)`: Move cursor to position `$n,$m` _(default: 1,1)_
+- `cursorBack($n)`: Move cursor back `$n` positions _(default: 1)_
+- `cursorForward($n)`: Move cursor forward `$n` positions _(default: 1)_
+- `cursorDown($n)`: Move cursor down `$n` positions _(default: 1)_
+- `cursorUp($n)`: Move cursor up `$n` positions _(default: 1)_
+- `cursorPosition($n, $m)`: Move cursor to position `$n,$m` _(default: 1,1)_
 
 ### Extra functions
 
