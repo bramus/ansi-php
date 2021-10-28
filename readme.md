@@ -52,7 +52,7 @@ An example library that uses `bramus/ansi-php` is [`bramus/monolog-colored-line-
 Installation is possible using Composer
 
 ```shell
-composer require bramus/ansi-php ~3.0
+composer require bramus/ansi-php ~3.1
 ```
 
 ## Usage
