@@ -12,7 +12,7 @@ trait SGR
 {
     /**
      * Manually use SGR (Select Graphic Rendition)
-     * @param  array $parameterByte Parameter byte to the SGR Escape Code
+     * @param  array $data Parameter byte to the SGR Escape Code
      * @return Ansi  self, for chaining
      */
     public function sgr($data = array())
