@@ -2,6 +2,8 @@
 
 namespace Bramus\Ansi\Traits;
 
+use Bramus\Ansi\Ansi;
+
 /**
  * Trait containing the Control Function Shorthands
  */
