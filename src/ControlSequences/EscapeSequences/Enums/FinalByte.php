@@ -6,6 +6,25 @@ namespace Bramus\Ansi\ControlSequences\EscapeSequences\Enums;
 
 class FinalByte
 {
+    /**
+     * DECSC - SAVE CURSOR POSITION & ATTRIBUTES
+     *
+     * Calls the DEC/VT100 standard to save cursor position (and attributes)
+     * for later recall using DECRC.
+     *
+     * @type string
+     */
+    const DECSC = '7';
+
+    /**
+     * DECRC - RESTORE CURSOR POSITION & ATTRIBUTES
+     *
+     * Calls the DEC/VT100 standard to restore cursor position (and attributes)
+     * set by DECSC.
+     *
+     * @type string
+     */
+    const DECRC = '8';
 
     /**
      * CUB - CURSOR BACK
