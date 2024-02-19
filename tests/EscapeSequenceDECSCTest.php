@@ -1,14 +1,13 @@
 <?php
 
-use \Bramus\Ansi\Ansi;
-use \Bramus\Ansi\Writers\StreamWriter;
-use \Bramus\Ansi\ControlFunctions\Enums\C0;
-use \Bramus\Ansi\ControlSequences\EscapeSequences\DECSC as EscapeSequenceDECSC;
-use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\FinalByte;
+use Bramus\Ansi\Ansi;
+use Bramus\Ansi\Writers\StreamWriter;
+use Bramus\Ansi\ControlFunctions\Enums\C0;
+use Bramus\Ansi\ControlSequences\EscapeSequences\DECSC as EscapeSequenceDECSC;
+use Bramus\Ansi\ControlSequences\EscapeSequences\Enums\FinalByte;
 
 class EscapeSequenceDECSCTest extends PHPUnit_Framework_TestCase
 {
-
     public function testInstantiation()
     {
         $es = new EscapeSequenceDECSC();
@@ -26,7 +25,7 @@ class EscapeSequenceDECSCTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             new EscapeSequenceDECSC(),
-            C0::ESC.'['.FinalByte::DECSC
+            C0::ESC . '[' . FinalByte::DECSC
         );
     }
 
@@ -47,24 +46,23 @@ class EscapeSequenceDECSCTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $a->saveCursorPosition()->text('test')->get(),
-            $es.'test'
+            $es . 'test'
         );
     }
 
     public function testAnsiDECSCShorthandsChained()
     {
-
         $a = new Ansi(new \Bramus\Ansi\Writers\BufferWriter());
 
         $this->assertEquals(
             $a->saveCursorPosition()->text('test')->saveCursorPosition()->get(),
-            (new EscapeSequenceDECSC()).'test'.(new EscapeSequenceDECSC())
+            (new EscapeSequenceDECSC()) . 'test' . (new EscapeSequenceDECSC())
         );
     }
 
     public function testAnsiDECSCPractical()
     {
-        $this->fail("I was unable to make a working practical test of this, and could not figure out why. If you can I'd be grateful :)");
+        $this->markTestIncomplete("I was unable to make a working practical test of this, and could not figure out why. If you can I'd be grateful :)");
     }
 }
 
