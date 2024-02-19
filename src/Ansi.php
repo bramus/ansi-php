@@ -18,6 +18,8 @@ class Ansi
     use Traits\EscapeSequences\CUF;
     use Traits\EscapeSequences\CUP;
     use Traits\EscapeSequences\CUU;
+    use Traits\EscapeSequences\DECSC;
+    use Traits\EscapeSequences\DECRC;
     use Traits\EscapeSequences\SGR;
 
     /**

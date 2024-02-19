@@ -33,6 +33,8 @@ When it comes to ANSI Escape Sequences `bramus/ansi-php` supports:
 - CUF _(Cursor Forward)_: Move cursor forward.
 - CUP _(Cursor Position)_: Move cursor to position.
 - CUU _(Cursor Up)_: Move cursor up.
+- DECSC _(Save Cursor Position)_: The DEC/VT100 method of saving a saved cursor position (and attributes, like color).
+- DECRC _(Restore Cursor Position)_: The DEC/VT100 method of restoring a saved cursor position (and attributes).
 - ED _(Erase Display)_: Erase (parts of) the display.
 - EL _(Erase In Line)_: Erase (parts of) the current line.
 - SGR _(Select Graphic Rendition)_: Manipulate text styling (bold, underline, blink, colors, etc.).
@@ -146,13 +148,15 @@ These shorthands write EL ANSI Escape Sequences to the writer.
 - `eraseLineToEOL()`: Erase from the current cursor position to the end of the current line.
 - `eraseLineToSOL()`: Erases from the current cursor position to the start of the current line.
 
-### CUB/CUD/CUF/CUP/CUU ANSI Escape Sequence shorthands:
+### CUB/CUD/CUF/CUP/CUU/DECSC/DECRC ANSI Escape Sequence shorthands:
 
 - `cursorBack($n)`: Move cursor back `$n` positions _(default: 1)_
 - `cursorForward($n)`: Move cursor forward `$n` positions _(default: 1)_
 - `cursorDown($n)`: Move cursor down `$n` positions _(default: 1)_
 - `cursorUp($n)`: Move cursor up `$n` positions _(default: 1)_
 - `cursorPosition($n, $m)`: Move cursor to position `$n,$m` _(default: 1,1)_
+- `saveCursorPosition()`: Saves current position (and attributes) of the cursor
+- `restoreCursorPosition()`: Restores the saved cursor position (and attributes)
 
 ### Extra functions
 
